@@ -94,7 +94,7 @@ export const Footer = () => {
       <div className="p-12 bg-white items-center justify-center flex gap-5">
         <div className="flex gap-5">
           <HeadPhoneIcon className="w-11 h-11 text-secondary" />
-          <div className="flex flex-col">
+          <div className="flex flex-col text-neutral-gray">
             <p className="text-sm font-semibold">Call us 24/7</p>
             <p className="text-sm font-semibold">{business.phone}</p>
           </div>
@@ -138,7 +138,7 @@ export const Footer = () => {
               <Link href={link.href}>
                 <div className="flex gap-3 items-center">
                   <BulletIcon className="w-2.5 h-2.5 text-primary" />
-                  <p className="text-neutral-gray capitalize">{link.text}</p>
+                  <p className="capitalize">{link.text}</p>
                 </div>
               </Link>
             ))}

@@ -20,7 +20,7 @@ export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
       )}
     >
       {/* top bar */}
-      <div className="flex justify-between">
+      <div className="flex justify-between py-2">
         <p className="text-sm">Need help? Call {business.phone}</p>
         <div className="flex gap-5">
           <MapPinIcon className="w-5 h-5" />
