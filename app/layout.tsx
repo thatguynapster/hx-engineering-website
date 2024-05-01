@@ -7,6 +7,8 @@ import { useState } from "react";
 import { Footer, Navbar, Sidebar } from "@/components";
 import StoreProvider from "@/providers";
 import "./globals.css";
+import "./scrollbar.css";
+import "../styles/index.scss";
 
 const poppins = Poppins({
   subsets: ["latin"],

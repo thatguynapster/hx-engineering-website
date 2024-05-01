@@ -15,8 +15,7 @@ export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
     <div
       className={classNames(
         "sticky top-0 z-40 flex flex-col gap-x-4 px-4 sm:px-6 md:px-12",
-
-        "bg-white dark:bg-neutral-gray"
+        "glass"
       )}
     >
       {/* top bar */}

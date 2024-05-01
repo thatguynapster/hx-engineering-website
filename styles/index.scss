@@ -32,9 +32,10 @@ body {
   }
 }
 
-.glass {
-  @apply bg-white/50 dark:bg-neutral-dark/50;
-  /* From https://css.glass */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+@layer components {
+  //   @import 'badge';
+  @import "button";
+  //   @import 'form';
+  //   @import 'table';
+  //   @import 'image';
 }

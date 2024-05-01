@@ -90,7 +90,7 @@ export const Footer = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-10 p-12 bg-primary/10">
+    <div className="flex flex-col gap-10 p-12 bg-primary/10 dark:bg-neutral-gray">
       <div className="p-12 bg-white items-center justify-center flex gap-5">
         <div className="flex gap-5">
           <HeadPhoneIcon className="w-11 h-11 text-secondary" />
@@ -129,13 +129,13 @@ export const Footer = () => {
         </div>
 
         {sectionLinks.map((section, i) => (
-          <div className="flex flex-col gap-3.5">
+          <div className="flex flex-col gap-3.5" key={i}>
             <h1 className="text-primary font-semibold text-xl">
               {section.title}
             </h1>
 
-            {section.links.map((link, i) => (
-              <Link href={link.href}>
+            {section.links.map((link, ind) => (
+              <Link href={link.href} key={ind}>
                 <div className="flex gap-3 items-center">
                   <BulletIcon className="w-2.5 h-2.5 text-primary" />
                   <p className="capitalize">{link.text}</p>
