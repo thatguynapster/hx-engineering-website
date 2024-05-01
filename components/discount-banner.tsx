@@ -7,9 +7,11 @@ export const DiscountBanner = () => {
   return (
     <div
       className={classNames(
+        "justify-evenly items-center",
+        "flex flex-col lg:flex-row",
         "bg-neutral-dark",
         "rounded-3xl",
-        "flex justify-evenly items-center"
+        "gap-4 p-8 lg:p-0"
       )}
     >
       <Image

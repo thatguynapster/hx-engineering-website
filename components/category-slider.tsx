@@ -18,10 +18,11 @@ import { Button } from "./button";
 export const CategorySlider = () => {
   const width = useWidth();
   console.log(width);
-  const isMobile = (width as number) <= 768;
-  const isTablet = (width as number) <= 1280;
+  const isMobile = (width as number) < 768;
+  const isTablet = (width as number) < 1280;
+  const isDesktop = (width as number) < 1440;
 
-  const svp = isMobile ? 1 : isTablet ? 2 : 3;
+  const svp = isMobile ? 1 : isTablet ? 2 : isDesktop ? 3 : 4;
 
   const categories = [{}, {}, {}, {}, {}];
 

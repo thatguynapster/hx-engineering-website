@@ -47,8 +47,13 @@ export const ProductCard = () => {
         <p className="font-semibold">&#8373;11.70</p>
       </div>
 
-      <div className={classNames("hidden group-hover:flex", "justify-between")}>
-        <Button className="bg-primary text-white rounded-full flex items-center justify-center">
+      <div
+        className={classNames(
+          "hidden group-hover:flex",
+          "justify-between gap-4"
+        )}
+      >
+        <Button className="bg-primary text-white rounded-full flex items-center justify-between w-full">
           <p className="text-sm font-semibold">Add to cart</p>
           <div className="flex items-center justify-center w-8 h-8 bg-white rounded-full">
             <ShoppingCartIcon className={"w-5 h-5 stroke-2 text-primary"} />
