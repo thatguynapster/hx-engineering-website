@@ -1,5 +1,6 @@
 "use client";
 
+import { classNames } from "@/libs";
 import { ErrorMessage, ErrorMessageProps } from "formik";
 import styled from "styled-components";
 
@@ -17,25 +18,34 @@ export function Error({
   if (withFormik) {
     return (
       <ErrorMessage {...props}>
-        {(error) => <Small {...{ className }}>{error}</Small>}
+        {(error) => (
+          <small
+            className={classNames(
+              "text-red-600 block ml-3.5 mt-1 text-xs",
+              className
+            )}
+          >
+            {error}
+          </small>
+        )}
       </ErrorMessage>
     );
   }
 
   if (!withFormik) {
-    // eslint-disable-next-line
-    return error ? <Small {...{ className }}>{error}</Small> : <></>;
+    return error ? (
+      <small
+        className={classNames(
+          "text-red-600 block ml-3.5 mt-1 text-xs",
+          className
+        )}
+      >
+        {error}
+      </small>
+    ) : (
+      <></>
+    );
   }
 
-  // eslint-disable-next-line
   return <></>;
 }
-
-/**
- * styles
- */
-const Small = styled.small.attrs({
-  className: "text-red-600 block ml-3.5 mt-1 text-xs" as string,
-})``;
-
-export default Error;

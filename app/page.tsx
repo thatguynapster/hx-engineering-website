@@ -4,13 +4,9 @@ import {
   DiscountBanner,
   ProductCard,
 } from "@/components";
-import ProductSection from "@/components/product-section";
 import { classNames } from "@/libs";
 import { IProduct } from "@/types";
-import { Metadata } from "next";
 import Image from "next/image";
-
-export const sectionPadding = "px-4 sm:px-6 md:px-12";
 
 async function getProducts() {
   try {
@@ -29,6 +25,8 @@ async function getProducts() {
     return { error };
   }
 }
+
+const sectionPadding = "px-4 sm:px-6 md:px-12";
 
 export default async function Home() {
   const { data: products, error } = await getProducts();
