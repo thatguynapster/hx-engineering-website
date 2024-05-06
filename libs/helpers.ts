@@ -5,17 +5,9 @@ export const scrollToDiv = (element: string) => {
   document.getElementById(element)?.scrollIntoView();
 };
 
-// export const classNames = (...classes: any) => {
-//   return classes.filter(Boolean).join(" ");
-// };
-
 export const classNames = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
 };
-
-// export const cn = (...inputs: ClassValue[]) => {
-//   return twMerge(clsx(inputs));
-// };
 
 export const phoneNumberFormat = (phone: string, reverse?: boolean) => {
   if (reverse) {

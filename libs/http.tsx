@@ -1,3 +1,5 @@
+"use client";
+
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'; // prettier-ignore
 
 let store: any;
@@ -17,7 +19,7 @@ export const http = axios.create({
   baseURL: process.env["NEXT_PUBLIC_BASE_API"],
   headers: {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": process.env["NEXT_PUBLIC_BASE_URL"],
     Accept: "application/json",
   },
 });
@@ -27,6 +29,7 @@ http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     const _store = localStorage.getItem(
       process.env["NEXT_PUBLIC_STORAGE_KEY"]!
     );
+    console.log(window.location.href);
 
     if (_store || store) {
       const st = _store && JSON.parse(_store);
@@ -46,6 +49,7 @@ http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   config.params = {
     ...config.params,
   };
+  console.log(config.url);
 
   return config;
 });

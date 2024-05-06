@@ -1,11 +1,18 @@
+"use client";
+
 import { ShoppingBagIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import React from "react";
 
+import { addToCart } from "@/functions";
 import { classNames } from "@/libs";
-import { Button } from ".";
+import { IProduct } from "@/types";
+import { Button, ImageSlider } from ".";
+import { useStore } from "@/hooks";
 
-export const ProductCard = () => {
+export const ProductCard = ({ product }: { product: IProduct }) => {
+  const { store, setStore } = useStore();
+
   return (
     <div
       className={classNames(
@@ -19,12 +26,7 @@ export const ProductCard = () => {
       )}
     >
       <div className="w-full h-[107px] relative">
-        <Image
-          src={"/img/sample_product.png"}
-          alt="Product Name Image"
-          fill
-          className="object-contain"
-        />
+        <ImageSlider images={product.images} alt={product.name} />
 
         {/* wishlist icon */}
         {/* <div
@@ -43,8 +45,8 @@ export const ProductCard = () => {
       </div>
 
       <div className="flex flex-col gap-2 group-hover:hidden transition">
-        <h2 className="font-medium text-primary">Wireless headphones</h2>
-        <p className="font-semibold">&#8373;11.70</p>
+        <h2 className="font-medium text-primary capitalize">{product.name}</h2>
+        <p className="font-semibold">&#8373;{product.sale_price.toFixed(2)}</p>
       </div>
 
       <div
@@ -53,7 +55,12 @@ export const ProductCard = () => {
           "justify-between gap-4"
         )}
       >
-        <Button className="bg-primary text-white rounded-full flex items-center justify-between w-full">
+        <Button
+          className="bg-primary text-white rounded-full flex items-center justify-between w-full"
+          onClick={() => {
+            addToCart(product, store, setStore);
+          }}
+        >
           <p className="text-sm font-semibold">Add to cart</p>
           <div className="flex items-center justify-center w-8 h-8 bg-white rounded-full">
             <ShoppingCartIcon className={"w-5 h-5 stroke-2 text-primary"} />

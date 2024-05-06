@@ -1,14 +1,18 @@
-"use client";
-
 import { Poppins } from "next/font/google";
 import { Toaster } from "react-hot-toast";
-import { useState } from "react";
+import { Metadata } from "next";
 
-import { Footer, Navbar, Sidebar } from "@/components";
+import { Footer, PageNavigation } from "@/components";
 import StoreProvider from "@/providers";
+
 import "./globals.css";
 import "./scrollbar.css";
 import "../styles/index.scss";
+
+export const metadata: Metadata = {
+  title: "HX Engineering",
+  description: "HX Engineering Online Mall",
+};
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,16 +24,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [toggle, setToggle] = useState(false);
-
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <Sidebar {...{ toggle, setToggle }} />
         <Toaster position="top-right" toastOptions={{ duration: 5000 }} />
         <StoreProvider>
           <main className="flex flex-col gap-16 min-h-screen">
-            <Navbar {...{ setToggle }} />
+            <PageNavigation />
             {children}
             <Footer />
           </main>

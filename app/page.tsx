@@ -4,39 +4,34 @@ import {
   DiscountBanner,
   ProductCard,
 } from "@/components";
+import ProductSection from "@/components/product-section";
 import { classNames } from "@/libs";
+import { IProduct } from "@/types";
 import { Metadata } from "next";
 import Image from "next/image";
 
-export const metadata: Metadata = {
-  title: "HX Engineering",
-  description: "HX Engineering Online Mall",
-};
+export const sectionPadding = "px-4 sm:px-6 md:px-12";
 
-export default function Home() {
-  const products = [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-  ];
-  const sectionPadding = "px-4 sm:px-6 md:px-12";
+async function getProducts() {
+  try {
+    const data = await fetch(
+      `${process.env["NEXT_PUBLIC_BASE_API"]}/public/products`,
+      { next: { revalidate: 1, tags: ["products"] } }
+    );
+    const responseBody = await data.json();
+
+    if (!data.ok) {
+      return { error: responseBody };
+    }
+
+    return { data: responseBody };
+  } catch (error) {
+    return { error };
+  }
+}
+
+export default async function Home() {
+  const { data: products, error } = await getProducts();
 
   return (
     <>
@@ -51,7 +46,7 @@ export default function Home() {
           <h1 className="text-5xl font-bold text-primary line line-clamp-2">
             Canon camera
           </h1>
-          <div className="flex gap-5">
+          <div className="flex gap-5 justify-center lg:justify-start">
             <Button className="btn btn-lg btn-primary rounded-full font-semibold">
               Shop now
             </Button>
@@ -91,7 +86,9 @@ export default function Home() {
           "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4"
         )}
       >
-        {products.map((product, i) => (
+        {!products && error && <>Error</>}
+
+        {products?.response.docs.map((product: IProduct, i: number) => (
           <ProductCard {...{ product }} key={i} />
         ))}
       </div>

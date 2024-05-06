@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+"use client";
+
+import { useState, useEffect } from "react";
 
 export const useWidth = () => {
   /**
@@ -11,7 +13,7 @@ export const useWidth = () => {
    */
   const handleWidth = (get?: number | undefined | boolean): void | number => {
     if (get) {
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         return window.innerWidth;
       }
     } else {
@@ -23,9 +25,9 @@ export const useWidth = () => {
    * effect
    */
   useEffect(() => {
-    window.addEventListener('resize', () => handleWidth());
+    window.addEventListener("resize", () => handleWidth());
     return () => {
-      window.removeEventListener('resize', () => handleWidth());
+      window.removeEventListener("resize", () => handleWidth());
     };
   });
 

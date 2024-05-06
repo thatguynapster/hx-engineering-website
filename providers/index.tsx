@@ -46,7 +46,7 @@ export default function StoreProvider({ children }: { children: any }) {
   }, [store]);
 
   return (
-    <StoreContext.Provider value={{ store: { ...store, logout }, setStore }}>
+    <StoreContext.Provider value={{ store: { ...store }, setStore }}>
       {children}
     </StoreContext.Provider>
   );
