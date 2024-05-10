@@ -14,5 +14,3 @@ export function useProduct(
     refreshInterval: 1000 * 60 * 60 * 10,
   });
 }
-
-export default useProduct;

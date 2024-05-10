@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { StoreInterface } from "@/context";
 import { ICart, IProduct } from "@/types";
+import toast from "react-hot-toast";
 
 export const addToCart = (
   product: IProduct,
@@ -29,10 +30,12 @@ export const addToCart = (
       _id: product._id,
       name: product.name,
       quantity: 1,
+      available_quantity: product.quantity,
       price: product.sale_price,
       image: product.images?.[0],
     });
   }
 
   setStore({ ...store, cart: cartItems });
+  toast.success(`"${product.name}" added to cart`);
 };

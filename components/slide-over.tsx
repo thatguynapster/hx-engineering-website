@@ -50,7 +50,7 @@ export const SlideOver = ({
                   leaveTo="translate-x-full"
                 >
                   <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                    <div className="flex h-full flex-col gap-6 overflow-y-scroll bg-white dark:bg-neutral-gray py-6 shadow-xl">
+                    <div className="flex h-full flex-col gap-6 overflow-y-scroll overflow-x-hidden bg-white dark:bg-neutral-gray py-6 shadow-xl">
                       <div className="px-4 sm:px-6">
                         <div className="flex items-start justify-between">
                           <Dialog.Title className="text-base font-semibold leading-6">

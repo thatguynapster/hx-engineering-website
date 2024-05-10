@@ -14,7 +14,7 @@ export type ISales = {
   price: number;
   discount_details?: IDiscount;
   user: {
-    _id: string;
+    _id?: string;
     name: string;
     phone: string;
     email?: string;

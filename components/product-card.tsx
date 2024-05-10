@@ -16,13 +16,11 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
   return (
     <div
       className={classNames(
-        "border border-neutral-30",
-        "group overflow-",
+        "border border-neutral-30 dark:border-white",
+        "group cursor-pointer",
         "flex flex-col gap-2",
-        "cursor-pointer",
-        "py-5 px-3.5",
-        "rounded-3xl",
-        "w-full"
+        "py-5 px-3.5 w-full",
+        "rounded-3xl"
       )}
     >
       <div className="w-full h-[107px] relative">

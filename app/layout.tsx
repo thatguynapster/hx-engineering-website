@@ -1,9 +1,8 @@
 import { Poppins } from "next/font/google";
-import { Toaster } from "react-hot-toast";
 import { Metadata } from "next";
 
 import { Footer, PageNavigation } from "@/components";
-import StoreProvider from "@/providers";
+import { AppProvider, StoreProvider } from "@/providers";
 
 import "./globals.css";
 import "./scrollbar.css";
@@ -27,13 +26,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <Toaster position="top-right" toastOptions={{ duration: 5000 }} />
         <StoreProvider>
-          <main className="flex flex-col gap-16 min-h-screen">
-            <PageNavigation />
-            {children}
-            <Footer />
-          </main>
+          <AppProvider>
+            <main className="flex flex-col gap-16 min-h-screen">
+              <PageNavigation />
+              {children}
+              <Footer />
+            </main>
+          </AppProvider>
         </StoreProvider>
       </body>
     </html>

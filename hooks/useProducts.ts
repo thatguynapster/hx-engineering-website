@@ -1,8 +1,8 @@
 "use client";
 
-import useSWR, { SWRResponse } from "swr";
 import queryString from "query-string";
 
+import useSWR, { SWRResponse } from "swr";
 import { IProduct } from "@/types";
 
 export type ProductsProps = {
@@ -13,9 +13,9 @@ export type ProductsProps = {
   total: number;
 };
 
-export function useProducts(queries?: {
+export const useProducts = (queries?: {
   [x: string]: any;
-}): SWRResponse<ProductsProps> {
+}): SWRResponse<ProductsProps> => {
   /**
    * variables
    */
@@ -31,6 +31,4 @@ export function useProducts(queries?: {
   return useSWR<ProductsProps>(key, null, {
     refreshInterval: 1000 * 60 * 60 * 10,
   });
-}
-
-export default useProducts;
+};

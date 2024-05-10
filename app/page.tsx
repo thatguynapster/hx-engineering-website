@@ -1,35 +1,21 @@
+"use client";
+
 import {
   Button,
   CategorySlider,
   DiscountBanner,
   ProductCard,
 } from "@/components";
+import { useProducts } from "@/hooks";
 import { classNames } from "@/libs";
 import { IProduct } from "@/types";
 import Image from "next/image";
 
-async function getProducts() {
-  try {
-    const data = await fetch(
-      `${process.env["NEXT_PUBLIC_BASE_API"]}/public/products`,
-      { next: { revalidate: 1, tags: ["products"] } }
-    );
-    const responseBody = await data.json();
-
-    if (!data.ok) {
-      return { error: responseBody };
-    }
-
-    return { data: responseBody };
-  } catch (error) {
-    return { error };
-  }
-}
-
 const sectionPadding = "px-4 sm:px-6 md:px-12";
 
-export default async function Home() {
-  const { data: products, error } = await getProducts();
+export default function Home() {
+  const { data: products, isLoading, error } = useProducts({ limit: 12 });
+  console.log(products);
 
   return (
     <>
@@ -85,8 +71,22 @@ export default async function Home() {
         )}
       >
         {!products && error && <>Error</>}
+        {!products &&
+          isLoading &&
+          Array.from({ length: 10 }, (_, j) => (
+            <div
+              key={j}
+              className={classNames(
+                "flex flex-col gap-2",
+                "bg-neutral-20",
+                "animate-pulse",
+                "w-full h-56",
+                "rounded-3xl"
+              )}
+            ></div>
+          ))}
 
-        {products?.response.docs.map((product: IProduct, i: number) => (
+        {products?.docs.map((product: IProduct, i: number) => (
           <ProductCard {...{ product }} key={i} />
         ))}
       </div>

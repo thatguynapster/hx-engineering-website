@@ -33,5 +33,3 @@ export const useWidth = () => {
 
   return width || handleWidth(true);
 };
-
-export default useWidth;

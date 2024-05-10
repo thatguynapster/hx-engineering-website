@@ -3,7 +3,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { getCountries, getCountryCallingCode } from "react-phone-number-input"; // prettier-ignore
 import { parsePhoneNumber } from "react-phone-number-input";
-// import { CountryCode } from "libphonenumber-js/types";
 import { type CountryCode } from "libphonenumber-js";
 import { debounce } from "lodash";
 import countryList from "react-select-country-list";
@@ -131,11 +130,11 @@ export function Phone({
   }, [autoFocus]);
 
   return (
-    <>
+    <div className="flex gap-2 items-center">
       <Dropdown className="pl-4">
         <Dropdown.Toggle
           type="button"
-          className="flex items-center gap-1 border-0 text-sm w-[42px]"
+          className="flex items-center gap-1 border-0 text-sm w-[42px] py-3"
         >
           <span>{showCountryCode ? country.code : country.callingCode}</span>
           {country.code && (
@@ -156,6 +155,7 @@ export function Phone({
 
               return (
                 <Dropdown.Item
+                  className="dark:bg-neutral-gray dark:hover:text-neutral-gray"
                   key={key}
                   active={country.code === others.country}
                   onClick={() => {
@@ -172,11 +172,12 @@ export function Phone({
             })}
         </Dropdown.Menu>
       </Dropdown>
+
       <PhoneInput
         ref={phoneRef}
         international={false}
         country={country.code}
-        className="input pl-1 pr-4"
+        className="input pl-1 pr-4 dark:bg-neutral-gray py-3 w-full focus:outline-none rounded-full"
         onBlur={() => setFieldTouched(name, true)}
         value={value ? phoneNumberFormat(value, true) : ""}
         onChange={(value: string) =>
@@ -184,7 +185,7 @@ export function Phone({
         }
         {...{ disabled, placeholder }}
       />
-    </>
+    </div>
   );
 }
 

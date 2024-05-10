@@ -12,13 +12,16 @@ export interface CartCheckoutSection {
 }
 
 export const CartCheckout = ({
+  view,
   children,
 }: {
+  view?: CartCheckoutSection["section"];
   children: (props: { proceed: () => void }) => ReactNode;
 }) => {
   const [open, setOpen] = useState(false);
-  const [section, setSection] =
-    useState<CartCheckoutSection["section"]>("cart");
+  const [section, setSection] = useState<CartCheckoutSection["section"]>(
+    view ?? "cart"
+  );
 
   return (
     <>
@@ -40,7 +43,7 @@ export const CartCheckout = ({
             transition={{ delay: 0.1, duration: 0.3 }}
             variants={{
               show: { x: 0, opacity: 1 },
-              hidden: { x: "-100%", opacity: 0 },
+              hidden: { x: "100%", opacity: 0 },
             }}
             className="flex flex-col px-4 sm:px-6 gap-4 h-full justify-between"
           >
@@ -56,7 +59,7 @@ export const CartCheckout = ({
             transition={{ delay: 0.1, duration: 0.3 }}
             variants={{
               show: { x: 0, opacity: 1 },
-              hidden: { x: "-100%", opacity: 0 },
+              hidden: { x: "100%", opacity: 0 },
             }}
             className="flex flex-col px-4 sm:px-6 gap-4 h-full justify-between"
           >
@@ -72,7 +75,7 @@ export const CartCheckout = ({
             transition={{ delay: 0.1, duration: 0.3 }}
             variants={{
               show: { x: 0, opacity: 1 },
-              hidden: { x: "-100%", opacity: 0 },
+              hidden: { x: "100%", opacity: 0 },
             }}
             className="flex flex-col px-4 sm:px-6 gap-4 h-full justify-between"
           >

@@ -8,5 +8,3 @@ export const useStore = () => {
   const store = useContext(StoreContext);
   return store;
 };
-
-export default useStore;
