@@ -6,7 +6,7 @@ import {
   DiscountBanner,
   ProductCard,
 } from "@/components";
-import { useFeaturedProducts } from "@/hooks";
+import { useCategories, useFeaturedProducts } from "@/hooks";
 import { classNames } from "@/libs";
 import { IProduct } from "@/types";
 import Image from "next/image";
@@ -16,13 +16,19 @@ const sectionPadding = "px-4 sm:px-6 md:px-12";
 export default function Home() {
   const {
     data: products,
-    isLoading,
-    error,
+    isLoading: productsLoading,
+    error: productsError,
   } = useFeaturedProducts({ limit: 12 });
 
   const mainFeature = (() => {
     return products?.docs[0];
   })();
+
+  const {
+    data: categories,
+    isLoading: categoriesLoading,
+    error: categoriesError,
+  } = useCategories({ product_count: true });
 
   return (
     <>
@@ -33,7 +39,20 @@ export default function Home() {
           "lg:px-44"
         )}
       >
-        {mainFeature ? (
+        {!products && productsLoading && (
+          <>
+            <div className="flex flex-col gap-12 animate-pulse">
+              <div className="h-12 w-96 bg-neutral-20 rounded-md"></div>
+              <div className="flex gap-8">
+                <div className="h-12 w-32 bg-neutral-20 rounded-full"></div>
+                <div className="h-12 w-32 bg-neutral-20 rounded-full"></div>
+              </div>
+            </div>
+            <div className="w-80 h-80 bg-neutral-20 rounded-3xl animate-pulse"></div>
+          </>
+        )}
+
+        {mainFeature && (
           <>
             <div className="flex flex-col gap-12">
               <h1 className="text-5xl font-bold text-primary line line-clamp-2 capitalize">
@@ -63,22 +82,15 @@ export default function Home() {
               </div>
             </div>
           </>
-        ) : (
-          <>
-            <div className="flex flex-col gap-12 animate-pulse">
-              <div className="h-12 w-96 bg-neutral-40 dark:bg-neutral-30 rounded-md"></div>
-              <div className="flex gap-8">
-                <div className="h-12 w-32 bg-neutral-40 dark:bg-neutral-30 rounded-full"></div>
-                <div className="h-12 w-32 bg-neutral-40 dark:bg-neutral-30 rounded-full"></div>
-              </div>
-            </div>
-            <div className="w-80 h-80 bg-neutral-4o dark:bg-neutral-30 rounded-3xl animate-pulse"></div>
-          </>
         )}
       </div>
 
       <div className={classNames(sectionPadding, "lg:px-[90px]")}>
-        <CategorySlider />
+        <CategorySlider
+          categories={categories?.docs}
+          loading={categoriesLoading}
+          error={categoriesError}
+        />
       </div>
 
       <div className={sectionPadding}>
@@ -93,9 +105,9 @@ export default function Home() {
           "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4"
         )}
       >
-        {!products && error && <>Error</>}
+        {!products && productsError && <>Error</>}
         {!products &&
-          isLoading &&
+          productsLoading &&
           Array.from({ length: 10 }, (_, j) => (
             <div
               key={j}
