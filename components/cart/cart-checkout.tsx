@@ -1,14 +1,14 @@
 "use client";
 
-import { Fragment, ReactNode, useState } from "react";
-import { Transition } from "@headlessui/react";
+import { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
 
-import { SlideOver } from "..";
 import { Cart, Checkout, DeliveryDetails } from ".";
+import { OrderComplete } from "./order-complete";
+import { SlideOver } from "..";
 
 export interface CartCheckoutSection {
-  section: "cart" | "checkout" | "delivery";
+  section: "cart" | "checkout" | "delivery" | "complete";
 }
 
 export const CartCheckout = ({
@@ -81,6 +81,22 @@ export const CartCheckout = ({
           >
             <DeliveryDetails {...{ setOpen, setSection }} />
           </motion.div>
+        )}
+
+        {section === "complete" && (
+          <motion.span
+            animate="show"
+            exit="hidden"
+            initial="hidden"
+            transition={{ delay: 0.1, duration: 0.3 }}
+            variants={{
+              show: { x: 0, opacity: 1 },
+              hidden: { x: "100%", opacity: 0 },
+            }}
+            className="flex flex-col px-4 sm:px-6 gap-8 h-full justify-center items-center"
+          >
+            <OrderComplete {...{ setOpen, setSection }} />
+          </motion.span>
         )}
       </SlideOver>
     </>

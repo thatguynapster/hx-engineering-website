@@ -13,10 +13,8 @@ import { ISales } from "@/types";
 import { schema } from "@/libs";
 
 export const DeliveryDetails = ({
-  setOpen,
   setSection,
 }: {
-  setOpen: (open: boolean) => void;
   setSection: (section: CartCheckoutSection["section"]) => void;
 }) => {
   const { store, setStore } = useStore();
@@ -71,7 +69,16 @@ export const DeliveryDetails = ({
 
         purchaseProductService(sale)
           .then((resp) => {
-            console.log(resp);
+            let _s = store;
+            delete _s["cart"];
+            delete _s["missing_products"];
+            delete _s["unavailable_products"];
+            setTimeout(() => {
+              setStore({ ...store, ..._s });
+            });
+
+            toast.success("Order confirmed. You will be contacted soon.");
+            setSection("complete");
           })
           .catch((error) => {
             console.log(error);

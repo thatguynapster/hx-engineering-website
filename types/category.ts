@@ -4,4 +4,5 @@ export interface ICategory {
   description: string;
   is_deleted: boolean;
   is_dev: boolean;
+  product_count: number;
 }

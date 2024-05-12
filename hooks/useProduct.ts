@@ -1,6 +1,6 @@
 import useSWR, { SWRResponse } from "swr";
 import queryString from "query-string";
-import { IApiResponse, IProduct } from "@/types";
+import { IProduct } from "@/types";
 
 export function useProduct(
   id?: string,

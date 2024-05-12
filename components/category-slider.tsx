@@ -12,25 +12,31 @@ import { classNames } from "@/libs";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { useWidth } from "@/hooks";
+import { useCategories, useWidth } from "@/hooks";
 import { Button } from "./button";
 
 export const CategorySlider = () => {
   const width = useWidth();
 
-  const isMobile = (width as number) < 768;
-  const isTablet = (width as number) < 1280;
-  const isDesktop = (width as number) < 1440;
+  const base = (width as number) < 640;
+  const sm = (width as number) < 768;
+  const md = (width as number) < 1024;
+  const lg = (width as number) < 1280;
+  const xl = (width as number) < 1536;
 
-  const svp = isMobile ? 1 : isTablet ? 2 : isDesktop ? 3 : 4;
+  const svp = base ? 1 : sm ? 2 : md ? 2 : lg ? 3 : xl ? 4 : 5;
 
-  const categories = [{}, {}, {}, {}, {}];
+  const {
+    data: categories,
+    isLoading,
+    error,
+  } = useCategories({ product_count: true });
 
   const [swiper, setSwiper] = useState<null | SwiperType>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [slideConfig, setSlideConfig] = useState({
     isBeginning: true,
-    isEnd: activeIndex === (categories.length ?? 0) - svp,
+    isEnd: activeIndex === (categories?.docs.length ?? 0) - svp,
   });
 
   useEffect(() => {
@@ -38,7 +44,7 @@ export const CategorySlider = () => {
       setActiveIndex(activeIndex);
       setSlideConfig({
         isBeginning: activeIndex === 0,
-        isEnd: activeIndex === (categories.length ?? 0) - svp,
+        isEnd: activeIndex === (categories?.docs.length ?? 0) - svp,
       });
     });
   }, [swiper, categories]);
@@ -56,7 +62,8 @@ export const CategorySlider = () => {
             activeStyles,
             "-right-4 transition",
             {
-              [inactiveStyles]: slideConfig.isEnd,
+              [inactiveStyles]:
+                slideConfig.isEnd || categories?.docs.length <= svp,
               "hover:bg-primary hover:text-neutral-10 text-neutral-50 opacity-100":
                 !slideConfig.isEnd,
             },
@@ -99,7 +106,7 @@ export const CategorySlider = () => {
         onSwiper={(swiper) => setSwiper(swiper)}
         modules={[Pagination]}
       >
-        {categories.map((data: any, index: number) => (
+        {categories?.docs.map((data: any, index: number) => (
           <SwiperSlide className="-z-10 relative w-full h-full" key={index}>
             <CategoryPreview {...{ data }} />
           </SwiperSlide>

@@ -1,17 +1,25 @@
 "use client";
 
-import queryString from "query-string";
 import useSWR, { SWRResponse } from "swr";
+import queryString from "query-string";
 
-import { IApiResponse } from "@/types";
+import { IApiResponse, IProduct } from "@/types";
 
-export const useProducts = (queries?: {
+export type ProductsProps = {
+  docs: IProduct[];
+  limit: number;
+  page: number;
+  pages: number;
+  total: number;
+};
+
+export const useFeaturedProducts = (queries?: {
   [x: string]: any;
 }): SWRResponse<IApiResponse> => {
   /**
    * variables
    */
-  const key = `/public/products?${queryString.stringify(
+  const key = `/public/products/featured?${queryString.stringify(
     { ...queries },
     { skipEmptyString: true, skipNull: true }
   )}`;

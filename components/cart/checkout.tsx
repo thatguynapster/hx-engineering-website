@@ -7,10 +7,8 @@ import { Button } from "@/components";
 import { useStore } from "@/hooks";
 
 export const Checkout = ({
-  setOpen,
   setSection,
 }: {
-  setOpen: (open: boolean) => void;
   setSection: (section: CartCheckoutSection["section"]) => void;
 }) => {
   const { store } = useStore();
