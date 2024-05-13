@@ -1,13 +1,13 @@
 "use client";
 
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import React from "react";
 
+import { checkoutInstantBuy, mergeInstantBuyWithCart } from "@/functions";
 import { CartCheckoutSection, CartItem } from ".";
 import { Button } from "@/components";
-import { useStore } from "@/hooks";
 import { classNames } from "@/libs";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { addToCart, mergeInstantBuyWithCart } from "@/functions";
+import { useStore } from "@/hooks";
 
 export const Checkout = ({
   setSection,
@@ -58,6 +58,7 @@ export const Checkout = ({
             <Button
               className="btn-outline-primary w-full"
               onClick={() => {
+                checkoutInstantBuy(store, setStore);
                 setSection("delivery");
               }}
             >

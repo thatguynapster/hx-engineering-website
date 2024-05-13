@@ -22,7 +22,10 @@ export const CartItem = ({
   }
 
   const { store, setStore } = useStore();
-  const items = store.cart ?? [];
+  let items = store.cart ?? [];
+  if (store.instant_buy) {
+    items = [store.instant_buy];
+  }
   const itemIdx = items?.findIndex((itm) => itm._id === item._id);
 
   const incrementQuantity = () => {
@@ -48,6 +51,9 @@ export const CartItem = ({
   const removeItem = () => {
     if (items) {
       items.splice(itemIdx, 1);
+      if (store.instant_buy) {
+        return setStore({ ...store, instant_buy: items[0] });
+      }
       setStore({ ...store, cart: items });
     }
   };

@@ -68,12 +68,10 @@ export const mergeInstantBuyWithCart = (
   if (cart) {
     cartItems = cart;
   }
-  console.log(cart);
 
   let existingItemIndex = cartItems.findIndex(
     (c_item) => c_item._id === item._id
   );
-  console.log(existingItemIndex);
 
   // update cart based when product already exists
   if (existingItemIndex !== -1) {
@@ -87,11 +85,26 @@ export const mergeInstantBuyWithCart = (
     console.log("does not exist");
     cartItems.push(item);
   }
-  console.log(cartItems);
 
   setStore((prev) => {
     return { ...prev, cart: cartItems, instant_buy: null };
   });
 
   toast.success(`cart added to checkout`);
+};
+
+export const checkoutInstantBuy = (
+  store: Partial<StoreInterface>,
+  setStore: Dispatch<SetStateAction<Partial<StoreInterface>>>
+) => {
+  let s_store = { ...store };
+  console.log(s_store);
+  delete s_store.cart;
+  s_store.cart = [s_store.instant_buy];
+  delete s_store.instant_buy;
+  console.log(s_store);
+
+  setStore((prev) => {
+    return s_store;
+  });
 };

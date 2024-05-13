@@ -2,11 +2,13 @@
 
 import {
   Button,
+  CartCheckout,
   CategorySlider,
   DiscountBanner,
   ProductCard,
 } from "@/components";
-import { useCategories, useFeaturedProducts } from "@/hooks";
+import { buyNow } from "@/functions";
+import { useCategories, useFeaturedProducts, useStore } from "@/hooks";
 import { classNames } from "@/libs";
 import { IProduct } from "@/types";
 import Image from "next/image";
@@ -14,6 +16,8 @@ import Image from "next/image";
 const sectionPadding = "px-4 sm:px-6 md:px-12";
 
 export default function Home() {
+  const { store, setStore } = useStore();
+
   const {
     data: products,
     isLoading: productsLoading,
@@ -60,9 +64,20 @@ export default function Home() {
               </h1>
 
               <div className="flex gap-5 justify-center lg:justify-start">
-                <Button className="btn btn-lg btn-primary rounded-full font-semibold">
-                  Shop now
-                </Button>
+                <CartCheckout view="checkout">
+                  {({ proceed }) => (
+                    <Button
+                      className="btn btn-lg btn-primary rounded-full font-semibold"
+                      onClick={() => {
+                        buyNow(mainFeature, store, setStore);
+                        setTimeout(proceed);
+                      }}
+                    >
+                      Buy now
+                    </Button>
+                  )}
+                </CartCheckout>
+
                 <Button className="btn btn-lg btn-outline-primary rounded-full font-semibold">
                   View more
                 </Button>
