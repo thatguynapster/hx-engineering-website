@@ -8,6 +8,7 @@ import React from "react";
 import { purchaseProductService } from "@/services";
 import { Button, Field } from "@/components";
 import { CartCheckoutSection } from ".";
+import CartTotal from "./cart-total";
 import { useStore } from "@/hooks";
 import { ISales } from "@/types";
 import { schema } from "@/libs";
@@ -18,11 +19,6 @@ export const DeliveryDetails = ({
   setSection: (section: CartCheckoutSection["section"]) => void;
 }) => {
   const { store, setStore } = useStore();
-
-  const subtotal = store.cart
-    ?.reduce((acc, item) => acc + item.quantity * item.price, 0)
-    .toFixed(2);
-  const total = subtotal;
 
   return (
     <Formik
@@ -114,28 +110,7 @@ export const DeliveryDetails = ({
       }) => (
         <>
           <div className="flex flex-col gap-4">
-            <div className="flex flex-col">
-              <div className="py-3 bg-primary/10 dark:bg-neutral-gray dark:border dark:border-white">
-                <p className="text-lg font-medium text-center">Cart total</p>
-              </div>
-
-              <div className="flex flex-col divide-y px-4">
-                <div className="flex justify-between py-3">
-                  <p>Subtotal</p>
-                  <p>
-                    &#8373;
-                    {subtotal}
-                  </p>
-                </div>
-                <div className="flex justify-between py-3 text-lg font-medium">
-                  <p>Subtotal</p>
-                  <p>
-                    &#8373;
-                    {total}
-                  </p>
-                </div>
-              </div>
-            </div>
+            <CartTotal />
 
             <div className="flex flex-col">
               <div className="py-3 bg-primary/10 dark:bg-neutral-gray dark:border dark:border-white">

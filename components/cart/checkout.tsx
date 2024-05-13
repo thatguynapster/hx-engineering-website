@@ -6,6 +6,7 @@ import React from "react";
 import { checkoutInstantBuy, mergeInstantBuyWithCart } from "@/functions";
 import { CartCheckoutSection, CartItem } from ".";
 import { Button } from "@/components";
+import CartTotal from "./cart-total";
 import { classNames } from "@/libs";
 import { useStore } from "@/hooks";
 
@@ -15,14 +16,6 @@ export const Checkout = ({
   setSection: (section: CartCheckoutSection["section"]) => void;
 }) => {
   const { store, setStore } = useStore();
-
-  const subtotal = store.instant_buy
-    ? (store.instant_buy?.quantity * store.instant_buy?.price).toFixed(2)
-    : store.cart
-        ?.reduce((acc, item) => acc + item.quantity * item.price, 0)
-        .toFixed(2);
-
-  const total = subtotal;
 
   return (
     <>
@@ -80,28 +73,7 @@ export const Checkout = ({
       ) : null}
 
       <div className="flex flex-col gap-4 sticky bottom-0 bg-white dark:bg-neutral-gray">
-        <div className="flex flex-col">
-          <div className="py-3 bg-primary/10 dark:bg-neutral-gray dark:border dark:border-white">
-            <p className="text-lg font-medium text-center">Cart total</p>
-          </div>
-
-          <div className="flex flex-col divide-y px-4">
-            <div className="flex justify-between py-3">
-              <p>Subtotal</p>
-              <p>
-                &#8373;
-                {subtotal}
-              </p>
-            </div>
-            <div className="flex justify-between py-3 text-lg font-medium">
-              <p>Subtotal</p>
-              <p>
-                &#8373;
-                {total}
-              </p>
-            </div>
-          </div>
-        </div>
+        <CartTotal />
 
         <Button
           className="btn-lg btn-primary w-full"
