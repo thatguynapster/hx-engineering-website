@@ -4,10 +4,10 @@ import { ShoppingBagIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import React from "react";
 
-import { addToCart } from "@/functions";
+import { addToCart, buyNow } from "@/functions";
 import { classNames } from "@/libs";
 import { IProduct } from "@/types";
-import { Button, ImageSlider } from ".";
+import { Button, CartCheckout, ImageSlider } from ".";
 import { useStore } from "@/hooks";
 
 export const ProductCard = ({ product }: { product: IProduct }) => {
@@ -65,9 +65,19 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
           </div>
         </Button>
 
-        <Button className="w-[56px] h-[56px] bg-primary text-white rounded-full flex items-center justify-center">
-          <ShoppingBagIcon className="w-6 h-6 stroke-2" />
-        </Button>
+        <CartCheckout view="checkout">
+          {({ proceed }) => (
+            <Button
+              className="w-[56px] h-[56px] bg-primary text-white rounded-full flex items-center justify-center"
+              onClick={() => {
+                buyNow(product, store, setStore);
+                setTimeout(proceed);
+              }}
+            >
+              <ShoppingBagIcon className="w-6 h-6 stroke-2" />
+            </Button>
+          )}
+        </CartCheckout>
       </div>
     </div>
   );

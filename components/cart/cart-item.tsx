@@ -16,9 +16,14 @@ export const CartItem = ({
   item: ICart;
   //   remove: () => void;
 }) => {
+  if (!item) {
+    // If item is null or undefined, return null to render nothing
+    return null;
+  }
+
   const { store, setStore } = useStore();
   const items = store.cart ?? [];
-  const itemIdx = items?.findIndex((itm) => itm._id === item._id)!;
+  const itemIdx = items?.findIndex((itm) => itm._id === item._id);
 
   const incrementQuantity = () => {
     if (items) {
@@ -56,7 +61,6 @@ export const CartItem = ({
       console.log("product not available");
       return "Product not available";
     }
-    console.log("nothing");
     return null;
   };
 

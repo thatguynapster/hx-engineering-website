@@ -15,7 +15,6 @@ export const useProducts = (queries?: {
     { ...queries },
     { skipEmptyString: true, skipNull: true }
   )}`;
-  console.log(key);
 
   /**
    * api

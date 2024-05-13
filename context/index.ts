@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction, createContext } from "react";
 
 export interface StoreInterface {
   cart: ICart[];
+  instant_buy: ICart;
   unavailable_products?: string[];
   missing_products?: string[];
 }

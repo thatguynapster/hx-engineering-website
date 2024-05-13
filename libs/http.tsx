@@ -19,7 +19,6 @@ export const http = axios.create({
   baseURL: process.env["NEXT_PUBLIC_BASE_API"],
   headers: {
     "Content-Type": "application/json",
-    // "Access-Control-Allow-Origin": process.env["NEXT_PUBLIC_BASE_URL"],
     Accept: "application/json",
   },
 });

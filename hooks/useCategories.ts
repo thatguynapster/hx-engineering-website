@@ -15,7 +15,6 @@ export const useCategories = (queries?: {
     { ...queries },
     { skipEmptyString: true, skipNull: true }
   )}`;
-  console.log(key);
 
   /**
    * api

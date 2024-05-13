@@ -1,27 +1,26 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import { Cart, Checkout, DeliveryDetails } from ".";
 import { OrderComplete } from "./order-complete";
 import { SlideOver } from "..";
+import { useStore } from "@/hooks";
 
 export interface CartCheckoutSection {
   section: "cart" | "checkout" | "delivery" | "complete";
 }
 
 export const CartCheckout = ({
-  view,
+  view = "cart",
   children,
 }: {
   view?: CartCheckoutSection["section"];
   children: (props: { proceed: () => void }) => ReactNode;
 }) => {
   const [open, setOpen] = useState(false);
-  const [section, setSection] = useState<CartCheckoutSection["section"]>(
-    view ?? "cart"
-  );
+  const [section, setSection] = useState<CartCheckoutSection["section"]>(view);
 
   return (
     <>
@@ -29,9 +28,13 @@ export const CartCheckout = ({
 
       <SlideOver
         show={open}
-        title="Cart"
+        title={section}
         onHide={() => {
-          setSection("cart");
+          if (view === "checkout") {
+            setSection("checkout");
+          } else {
+            setSection("cart");
+          }
           setOpen(false);
         }}
       >

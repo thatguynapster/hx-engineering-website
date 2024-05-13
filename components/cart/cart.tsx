@@ -18,21 +18,25 @@ export const Cart = ({
   return (
     <>
       <div className="flex flex-col divide-y">
+        {!store.cart.length && <>Empty</>}
+
         {store.cart?.map((item, i) => (
           <CartItem {...{ item }} key={i} />
         ))}
       </div>
 
       <div className="flex flex-col gap-4 sticky bottom-0 bg-white dark:bg-neutral-gray">
-        <div className="flex justify-between">
-          <p className="text-2xl font-semibold">Total</p>
-          <p className="text-2xl font-semibold text-primary">
-            &#8373;
-            {store.cart
-              ?.reduce((acc, item) => acc + item.quantity * item.price, 0)
-              .toFixed(2)}
-          </p>
-        </div>
+        {store.cart.length ? (
+          <div className="flex justify-between">
+            <p className="text-2xl font-semibold">Total</p>
+            <p className="text-2xl font-semibold text-primary">
+              &#8373;
+              {store.cart
+                ?.reduce((acc, item) => acc + item.quantity * item.price, 0)
+                .toFixed(2)}
+            </p>
+          </div>
+        ) : null}
 
         <div className="flex flex-col lg:flex-row gap-4">
           <Button
@@ -45,14 +49,16 @@ export const Cart = ({
             Continue shopping
           </Button>
 
-          <Button
-            className="btn-lg btn-primary w-full"
-            onClick={() => {
-              setSection("checkout");
-            }}
-          >
-            Checkout
-          </Button>
+          {store.cart.length ? (
+            <Button
+              className="btn-lg btn-primary w-full"
+              onClick={() => {
+                setSection("checkout");
+              }}
+            >
+              Checkout
+            </Button>
+          ) : null}
         </div>
       </div>
     </>
