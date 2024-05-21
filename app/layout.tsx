@@ -4,8 +4,7 @@ import { Metadata } from "next";
 import { Footer, PageNavigation } from "@/components";
 import { AppProvider, StoreProvider } from "@/providers";
 
-import "./globals.css";
-import "./scrollbar.css";
+import "../styles/scrollbar.css";
 import "../styles/index.scss";
 
 export const metadata: Metadata = {

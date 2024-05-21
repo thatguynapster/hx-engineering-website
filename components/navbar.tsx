@@ -39,7 +39,7 @@ export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
       </div>
 
       {/* main nav */}
-      <div className="flex flex-1 justify-between gap-6">
+      <div className="flex flex-1 justify-between items-center gap-6">
         <button
           type="button"
           className="-m-2.5 p-2.5 dark:text-neutral-10 lg:hidden"
@@ -48,16 +48,19 @@ export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
           <span className="sr-only">Open sidebar</span>
           <Bars3Icon className="h-6 w-6" aria-hidden="true" />
         </button>
+
         <div className="hidden lg:flex items-center gap-6">
           <div className="relative h-[48px] w-[232px]">
-            <Image src="/img/logo-long.png" fill alt="HX Logo" />
+            <Image src="/img/logo-long.png" fill priority alt="HX Logo" />
           </div>
+
           <div className="flex gap-6">
-            <Link href="#">Home</Link>
+            {/* <Link href="#">Home</Link> */}
             <Link href="#">About us</Link>
-            <Link href="#">Shop</Link>
+            <Link href="/all-products">Shop</Link>
           </div>
         </div>
+
         <CartCheckout>
           {({ proceed }) => (
             <div

@@ -100,6 +100,7 @@ export const ImageSlider = ({
               src={data}
               alt={`${alt} Image`}
               fill
+              priority
               className="object-contain"
             />
           </SwiperSlide>

@@ -6,12 +6,14 @@ import {
   CategorySlider,
   DiscountBanner,
   ProductCard,
+  Skeleton,
 } from "@/components";
 import { buyNow } from "@/functions";
 import { useCategories, useFeaturedProducts, useStore } from "@/hooks";
 import { classNames } from "@/libs";
 import { IProduct } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 
 const sectionPadding = "px-4 sm:px-6 md:px-12";
 
@@ -78,9 +80,12 @@ export default function Home() {
                   )}
                 </CartCheckout>
 
-                <Button className="btn btn-lg btn-outline-primary rounded-full font-semibold">
+                <Link
+                  href={"/all-products"}
+                  className="btn btn-lg btn-outline-primary rounded-full font-semibold"
+                >
                   View more
-                </Button>
+                </Link>
               </div>
             </div>
 
@@ -121,20 +126,10 @@ export default function Home() {
         )}
       >
         {!products && productsError && <>Error</>}
+
         {!products &&
           productsLoading &&
-          Array.from({ length: 10 }, (_, j) => (
-            <div
-              key={j}
-              className={classNames(
-                "flex flex-col gap-2",
-                "bg-neutral-20",
-                "animate-pulse",
-                "w-full h-56",
-                "rounded-3xl"
-              )}
-            ></div>
-          ))}
+          Array.from({ length: 10 }, (_, j) => <Skeleton.Product key={j} />)}
 
         {products?.docs.map((product: IProduct, i: number) => (
           <ProductCard {...{ product }} key={i} />

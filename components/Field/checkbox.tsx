@@ -36,19 +36,19 @@ export function Checkbox({
       />
       <div
         className={classNames(
-          "w-4 h-4",
-          "flex rounded border-2 transition border-neutral-200",
-          "peer-checked:bg-primary peer-checked:bg-secondary-main peer-checked:border-primary peer-checked:border-secondary-main"
+          "w-[30px] h-[30px]",
+          "flex rounded-lg border transition border-neutral-30",
+          "peer-checked:bg-primary peer-checked:border-primary"
         )}
       >
         <CheckIcon
           className={classNames(
             isChecked ? "text-white" : "text-transparent",
-            "w-3 h-3 m-auto stroke-[2.5px]"
+            "w-3.5 h-3.5 m-auto stroke-[2.5px]"
           )}
         />
       </div>
-      <div className="text-sm text-neutral-700 select-none">{children}</div>
+      <div className="select-none">{children}</div>
     </label>
   );
 }

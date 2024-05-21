@@ -19,7 +19,7 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
         "border border-neutral-30 dark:border-white",
         "group cursor-pointer",
         "flex flex-col gap-2",
-        "py-5 px-3.5 w-full",
+        "py-5 px-3.5 w-full h-fit",
         "rounded-3xl"
       )}
     >
@@ -43,7 +43,9 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
       </div>
 
       <div className="flex flex-col gap-2 group-hover:hidden transition">
-        <h2 className="font-medium text-primary capitalize">{product.name}</h2>
+        <h2 className="font-medium text-primary capitalize truncate">
+          {product.name}
+        </h2>
         <p className="font-semibold">&#8373;{product.sale_price.toFixed(2)}</p>
       </div>
 
