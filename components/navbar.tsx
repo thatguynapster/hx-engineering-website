@@ -8,12 +8,12 @@ import {
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-import { business } from "@/configs/business";
-import { classNames } from "@/libs";
-import Link from "next/link";
-import { useStore } from "@/hooks";
 import { CartCheckout } from "./cart/cart-checkout";
+import { business, navigation } from "@/configs";
+import { classNames } from "@/libs";
+import { useStore } from "@/hooks";
 import { routes } from "@/routes";
+import Link from "next/link";
 
 export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
   const { store } = useStore();
@@ -59,9 +59,10 @@ export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
           </Link>
 
           <div className="flex gap-6">
-            {/* <Link href="#">Home</Link> */}
-            <Link href="#">About us</Link>
-            <Link href={routes.products.all}>Shop</Link>
+            {navigation.map((item, i) => (
+              <Link href={item.href}>{item.name}</Link>
+            ))}
+            {/* <Link href={routes.products.all}>Shop</Link> */}
           </div>
         </div>
 

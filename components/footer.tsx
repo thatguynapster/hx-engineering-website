@@ -7,7 +7,7 @@ import {
   InstagramIcon,
   WhatsappIcon,
 } from "./icons";
-import { business } from "@/configs/business";
+import { business } from "@/configs";
 import Link from "next/link";
 
 export const Footer = () => {

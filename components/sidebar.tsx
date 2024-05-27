@@ -3,28 +3,12 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { usePathname } from "next/navigation";
+import { navigation } from "@/configs";
 import { classNames } from "@/libs";
 import { routes } from "@/routes";
-
-const navigation = [
-  {
-    name: "Home",
-    href: routes.home.index,
-    current: true,
-  },
-  {
-    name: "About us",
-    href: routes.about.index,
-    current: false,
-  },
-  {
-    name: "Shop",
-    href: routes.shop.index,
-    current: false,
-  },
-];
 
 export const Sidebar = ({
   toggle,
@@ -77,7 +61,10 @@ export const Sidebar = ({
 const Side = ({ handleActive }: { handleActive: (key: string) => boolean }) => {
   return (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white dark:bg-neutral-gray px-6 pb-4">
-      <div className="flex h-16 shrink-0 items-center">
+      <Link
+        href={routes.home.index}
+        className="flex h-16 shrink-0 items-center"
+      >
         <Image
           src={"/img/logo-long.png"}
           alt={"HX logo"}
@@ -86,7 +73,7 @@ const Side = ({ handleActive }: { handleActive: (key: string) => boolean }) => {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw"
           priority
         />
-      </div>
+      </Link>
       <nav className="flex flex-1 flex-col">
         <ul role="list" className="flex flex-1 flex-col gap-y-7">
           <li>
