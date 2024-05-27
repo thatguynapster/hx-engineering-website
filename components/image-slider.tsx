@@ -8,10 +8,10 @@ import type SwiperType from "swiper";
 import Image from "next/image";
 
 import { classNames } from "@/libs";
+import { Button } from "./button";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { Button } from "./button";
 
 export const ImageSlider = ({
   images,
@@ -59,6 +59,7 @@ export const ImageSlider = ({
           aria-label="next category"
           onClick={(ev) => {
             ev.preventDefault();
+            ev.stopPropagation();
             swiper?.slideNext();
           }}
         >
@@ -79,6 +80,7 @@ export const ImageSlider = ({
           aria-label="previous category"
           onClick={(ev) => {
             ev.preventDefault();
+            ev.stopPropagation();
             swiper?.slidePrev();
           }}
         >
@@ -94,7 +96,7 @@ export const ImageSlider = ({
         modules={[Pagination]}
       >
         {images.map((data: any, index: number) => (
-          <SwiperSlide className="-z-10 relative w-full h-full" key={index}>
+          <SwiperSlide key={index} className="-z-10 relative w-full h-full">
             <div className="relative w-full h-[107px]"></div>
             <Image
               src={data}

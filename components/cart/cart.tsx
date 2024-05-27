@@ -18,7 +18,7 @@ export const Cart = ({
   return (
     <>
       <div className="flex flex-col divide-y">
-        {!store.cart.length && <>Empty</>}
+        {!store.cart?.length && <>Empty</>}
 
         {store.cart?.map((item, i) => (
           <CartItem {...{ item }} key={i} />
@@ -26,7 +26,7 @@ export const Cart = ({
       </div>
 
       <div className="flex flex-col gap-4 sticky bottom-0 bg-white dark:bg-neutral-gray">
-        {store.cart.length ? (
+        {store.cart?.length ? (
           <div className="flex justify-between">
             <p className="text-2xl font-semibold">Total</p>
             <p className="text-2xl font-semibold text-primary">
@@ -49,7 +49,7 @@ export const Cart = ({
             Continue shopping
           </Button>
 
-          {store.cart.length ? (
+          {store.cart?.length ? (
             <Button
               className="btn-lg btn-primary w-full"
               onClick={() => {

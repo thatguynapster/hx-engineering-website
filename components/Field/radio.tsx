@@ -33,5 +33,3 @@ export function Radio({
     </label>
   );
 }
-
-export default Radio;

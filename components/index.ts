@@ -1,5 +1,5 @@
 export * from "./button";
-export * from "./cart/cart-checkout";
+export * from "./cart";
 export * from "./category-preview";
 export * from "./category-slider";
 export * from "./discount-banner";
@@ -12,7 +12,10 @@ export * from "./image-slider";
 export * from "./navbar";
 export * from "./page-navigation";
 export * from "./pagination";
+export * from "./image-preview-slider";
 export * from "./product-card";
 export * from "./sidebar";
 export * as Skeleton from "./skeletons";
 export * from "./slide-over";
+export * from "./slider";
+export * from "./Tabs";

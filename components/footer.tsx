@@ -103,9 +103,9 @@ export const Footer = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="flex flex-col gap-6">
-          <div className="relative h-[48px] w-[232px]">
-            <Image src="/img/logo-long.png" fill alt="HX Logo" />
-          </div>
+          <Link href="/" className="relative h-[48px] w-[232px]">
+            <Image src="/img/logo-long.png" fill priority alt="HX Logo" />
+          </Link>
 
           <p>
             64 st james boulevard

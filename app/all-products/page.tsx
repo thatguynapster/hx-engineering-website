@@ -1,30 +1,19 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import {
-  Button,
-  CartCheckout,
-  CategorySlider,
   DiscountBanner,
   FilterGroup,
   Pagination,
   ProductCard,
 } from "@/components";
-import { buyNow } from "@/functions";
-import {
-  useCategories,
-  useFeaturedProducts,
-  useProducts,
-  useStore,
-} from "@/hooks";
-import { classNames } from "@/libs";
+import { useCategories, useProducts, useStore } from "@/hooks";
 import { Filters, ICategory, IProduct } from "@/types";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+// import { sectionPadding } from "@/app/page";
+import { classNames } from "@/libs";
 
-const sectionPadding = "px-4 sm:px-6 md:px-12";
-
-export default function Home() {
+export default function Page() {
   const [filters, setFilters] = useState<Partial<Filters>>({ page: 1 });
   const { store, setStore } = useStore();
 
@@ -34,7 +23,7 @@ export default function Home() {
     error: productsError,
   } = useProducts({
     ...filters,
-    limit: 1,
+    limit: 12,
     categories: filters.categories?.join(","),
   });
 
@@ -52,12 +41,7 @@ export default function Home() {
 
   return (
     <>
-      <div
-        className={classNames(
-          sectionPadding,
-          "flex flex-col md:flex-row gap-4"
-        )}
-      >
+      <div className={classNames("flex flex-col md:flex-row gap-4")}>
         <div className="max-w-56 w-full">
           {categories && (
             <FilterGroup
@@ -65,7 +49,7 @@ export default function Home() {
                 title: "Categories",
                 type: "checkbox",
                 slug: "categories",
-                filters: categories?.docs.map((cat: ICategory, i) => ({
+                filters: categories?.docs.map((cat: ICategory) => ({
                   label: cat.name,
                   value: cat._id,
                 })),
@@ -86,7 +70,7 @@ export default function Home() {
 
             {!products &&
               productsLoading &&
-              Array.from({ length: 1 }, (_, j) => (
+              Array.from({ length: 10 }, (_, j) => (
                 <div
                   key={j}
                   className={classNames(
@@ -108,7 +92,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={sectionPadding}>
+      <div className={""}>
         <DiscountBanner />
       </div>
     </>

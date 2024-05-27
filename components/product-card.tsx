@@ -1,16 +1,18 @@
 "use client";
 
 import { ShoppingBagIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
+import { Button, CartCheckout, ImageSlider } from ".";
 import { addToCart, buyNow } from "@/functions";
 import { classNames } from "@/libs";
 import { IProduct } from "@/types";
-import { Button, CartCheckout, ImageSlider } from ".";
 import { useStore } from "@/hooks";
+import { routes } from "@/routes";
 
 export const ProductCard = ({ product }: { product: IProduct }) => {
+  const router = useRouter();
   const { store, setStore } = useStore();
 
   return (
@@ -22,6 +24,11 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
         "py-5 px-3.5 w-full h-fit",
         "rounded-3xl"
       )}
+      onClick={() => {
+        router.push(
+          routes.products.details.replace(":product_id", product._id)
+        );
+      }}
     >
       <div className="w-full h-[107px] relative">
         <ImageSlider images={product.images} alt={product.name} />
@@ -57,8 +64,9 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
       >
         <Button
           className="bg-primary text-white rounded-full flex items-center justify-between w-full"
-          onClick={() => {
-            addToCart(product, store, setStore);
+          onClick={(ev) => {
+            ev.stopPropagation();
+            addToCart({ product, store, setStore });
           }}
         >
           <p className="text-sm font-semibold">Add to cart</p>
@@ -71,8 +79,9 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
           {({ proceed }) => (
             <Button
               className="w-[56px] h-[56px] bg-primary text-white rounded-full flex items-center justify-center"
-              onClick={() => {
-                buyNow(product, store, setStore);
+              onClick={(ev) => {
+                ev.stopPropagation();
+                buyNow({ product, store, setStore });
                 setTimeout(proceed);
               }}
             >

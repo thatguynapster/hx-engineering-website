@@ -28,26 +28,6 @@ export const CartItem = ({
   }
   const itemIdx = items?.findIndex((itm) => itm._id === item._id);
 
-  const incrementQuantity = () => {
-    if (items) {
-      items[itemIdx] = {
-        ...items[itemIdx],
-        quantity: items[itemIdx].quantity + 1,
-      };
-      setStore({ ...store, cart: items });
-    }
-  };
-
-  const decrementQuantity = () => {
-    if (items && item.quantity > 1) {
-      items[itemIdx] = {
-        ...items[itemIdx],
-        quantity: items[itemIdx].quantity - 1,
-      };
-      setStore({ ...store, cart: items });
-    }
-  };
-
   const removeItem = () => {
     if (items) {
       items.splice(itemIdx, 1);
@@ -95,15 +75,21 @@ export const CartItem = ({
             <span className="px-2 text-neutral-40">x {item.quantity}</span>
           )}
           {!checkout && (
-            <div className="flex gap-2 font-medium">
-              <span className="px-2 cursor-pointer" onClick={decrementQuantity}>
-                -
-              </span>
-              <span className="px-2">{item.quantity}</span>
-              <span className="px-2 cursor-pointer" onClick={incrementQuantity}>
-                +
-              </span>
-            </div>
+            <CartQuantity
+              incrementQuantity={() => {
+                incrementQuantity(items, itemIdx).then((items) => {
+                  console.log(items);
+                  setStore({ ...store, cart: items });
+                });
+              }}
+              decrementQuantity={() => {
+                decrementQuantity(items, item, itemIdx).then((items) => {
+                  console.log(items);
+                  items && setStore({ ...store, cart: items });
+                });
+              }}
+              quantity={item.quantity}
+            />
           )}
 
           <p className="font-medium">
@@ -126,6 +112,67 @@ export const CartItem = ({
           {productErrorMessage()}
         </p>
       )}
+    </div>
+  );
+};
+
+const incrementQuantity = async (
+  items: ICart[],
+  itemIdx: number
+): Promise<ICart[]> => {
+  if (items) {
+    items[itemIdx] = {
+      ...items[itemIdx],
+      quantity: items[itemIdx].quantity + 1,
+    };
+    // setStore({ ...store, cart: items });
+    console.log(items);
+    return items;
+  }
+};
+
+const decrementQuantity = async (
+  items: ICart[],
+  item: ICart,
+  itemIdx: number
+): Promise<ICart[]> => {
+  if (items && item.quantity > 1) {
+    items[itemIdx] = {
+      ...items[itemIdx],
+      quantity: items[itemIdx].quantity - 1,
+    };
+    // setStore({ ...store, cart: items });
+    console.log(items);
+    return items;
+  }
+};
+
+export const CartQuantity = ({
+  quantity,
+  decrementQuantity,
+  incrementQuantity,
+}: {
+  quantity: ICart["quantity"];
+  decrementQuantity: () => void;
+  incrementQuantity: () => void;
+}) => {
+  return (
+    <div className="flex gap-2 font-medium">
+      <button
+        className="px-2 cursor-pointer disabled:text-neutral-30"
+        disabled={quantity <= 1}
+        onClick={decrementQuantity}
+      >
+        -
+      </button>
+      <span className="px-2">{quantity}</span>
+      <button
+        disabled={quantity === 0}
+        className="px-2 cursor-pointer disabled:text-neutral-30"
+        onClick={incrementQuantity}
+      >
+        +
+      </button>
     </div>
   );
 };

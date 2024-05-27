@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import type SwiperType from "swiper";
@@ -16,14 +16,16 @@ import { useCategories, useWidth } from "@/hooks";
 import { Button } from "./button";
 import { ICategory } from "@/types";
 
-export const CategorySlider = ({
-  categories,
+export const Slider = ({
+  children,
   loading,
   error,
+  options = { showButtons: true, offset: 0 },
 }: {
-  categories: ICategory[];
+  children: ReactNode[];
   loading: boolean;
   error: any;
+  options?: Partial<{ showButtons: boolean; offset: number }>;
 }) => {
   const width = useWidth();
 
@@ -39,7 +41,7 @@ export const CategorySlider = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const [slideConfig, setSlideConfig] = useState({
     isBeginning: true,
-    isEnd: activeIndex === (categories?.length ?? 0) - svp,
+    isEnd: activeIndex === (children?.length ?? 0) - svp,
   });
 
   useEffect(() => {
@@ -47,10 +49,10 @@ export const CategorySlider = ({
       setActiveIndex(activeIndex);
       setSlideConfig({
         isBeginning: activeIndex === 0,
-        isEnd: activeIndex === (categories?.length ?? 0) - svp,
+        isEnd: activeIndex === (children?.length ?? 0) - svp,
       });
     });
-  }, [swiper, categories]);
+  }, [swiper, children]);
 
   const activeStyles =
     "active:scale-[0.97] grid opacity-100 hover:scale-105 absolute top-1/2 -translate-y-1/2 aspect-square h-8 w-8 z-50 place-items-center rounded-full text-white bg-neutral-20";
@@ -58,7 +60,7 @@ export const CategorySlider = ({
   const inactiveStyles = "hidden";
 
   return (
-    <div className={classNames("group relative")}>
+    <div className={classNames("relative")}>
       {error && <></>}
       {loading && (
         <div className="flex gap-4">
@@ -76,58 +78,61 @@ export const CategorySlider = ({
           ))}
         </div>
       )}
-      <div className="absolute inset-0">
-        <Button
-          className={classNames(
-            activeStyles,
-            "-right-4 transition",
-            {
-              [inactiveStyles]: slideConfig.isEnd || categories?.length <= svp,
-              "hover:bg-primary hover:text-neutral-10 text-neutral-50 opacity-100":
-                !slideConfig.isEnd,
-            },
-            "!p-0"
-          )}
-          aria-label="next category"
-          onClick={(ev) => {
-            ev.preventDefault();
-            swiper?.slideNext();
-          }}
-        >
-          <ArrowRightIcon className="w-4 h-4 text-inherit" />
-        </Button>
 
-        <Button
-          className={classNames(
-            activeStyles,
-            "-left-4 transition",
-            {
-              [inactiveStyles]: slideConfig.isBeginning,
-              "hover:bg-primary hover:text-neutral-10 text-neutral-50 opacity-100":
-                !slideConfig.isBeginning,
-            },
-            "!p-0"
-          )}
-          aria-label="previous category"
-          onClick={(ev) => {
-            ev.preventDefault();
-            swiper?.slidePrev();
-          }}
-        >
-          <ArrowLeftIcon className="w-4 h-4" />
-        </Button>
-      </div>
+      {options.showButtons && (
+        <div className="absolute inset-0">
+          <Button
+            className={classNames(
+              activeStyles,
+              "-right-4 transition",
+              {
+                [inactiveStyles]: slideConfig.isEnd || children?.length <= svp,
+                "hover:bg-primary hover:text-neutral-10 text-neutral-50 opacity-100":
+                  !slideConfig.isEnd,
+              },
+              "!p-0"
+            )}
+            aria-label="next category"
+            onClick={(ev) => {
+              ev.preventDefault();
+              swiper?.slideNext();
+            }}
+          >
+            <ArrowRightIcon className="w-4 h-4 text-inherit" />
+          </Button>
+
+          <Button
+            className={classNames(
+              activeStyles,
+              "-left-4 transition",
+              {
+                [inactiveStyles]: slideConfig.isBeginning,
+                "hover:bg-primary hover:text-neutral-10 text-neutral-50 opacity-100":
+                  !slideConfig.isBeginning,
+              },
+              "!p-0"
+            )}
+            aria-label="previous category"
+            onClick={(ev) => {
+              ev.preventDefault();
+              swiper?.slidePrev();
+            }}
+          >
+            <ArrowLeftIcon className="w-4 h-4" />
+          </Button>
+        </div>
+      )}
 
       <Swiper
         className="w-full h-full"
         spaceBetween={16}
-        slidesPerView={svp}
+        slidesPerView={svp + options.offset}
         onSwiper={(swiper) => setSwiper(swiper)}
         modules={[Pagination]}
       >
-        {categories?.map((data: any, index: number) => (
+        {children?.map((slide: any, index: number) => (
           <SwiperSlide className="-z-10 relative w-full h-full" key={index}>
-            <CategoryPreview {...{ data }} />
+            {slide}
           </SwiperSlide>
         ))}
       </Swiper>

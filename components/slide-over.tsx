@@ -24,7 +24,7 @@ export const SlideOver = ({
   return (
     <>
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={onHide}>
+        <Dialog as="div" className="relative z-50" onClose={onHide}>
           <Transition.Child
             as={Fragment}
             enter="ease-in-out duration-200"

@@ -5,10 +5,11 @@ import { IProduct } from "@/types";
 export function useProduct(
   id?: string,
   queries?: Partial<{
-    category_details: boolean;
+    [x: string]: any;
   }>
 ): SWRResponse<IProduct> {
-  const key = id && `/products/${id}?${queryString.stringify({ ...queries })}`;
+  const key =
+    id && `/public/products/${id}?${queryString.stringify({ ...queries })}`;
 
   return useSWR<IProduct>(key, null, {
     refreshInterval: 1000 * 60 * 60 * 10,

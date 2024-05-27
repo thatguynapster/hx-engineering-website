@@ -13,6 +13,7 @@ import { classNames } from "@/libs";
 import Link from "next/link";
 import { useStore } from "@/hooks";
 import { CartCheckout } from "./cart/cart-checkout";
+import { routes } from "@/routes";
 
 export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
   const { store } = useStore();
@@ -50,14 +51,17 @@ export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
         </button>
 
         <div className="hidden lg:flex items-center gap-6">
-          <div className="relative h-[48px] w-[232px]">
+          <Link
+            href={routes.home.index}
+            className="relative h-[48px] w-[232px]"
+          >
             <Image src="/img/logo-long.png" fill priority alt="HX Logo" />
-          </div>
+          </Link>
 
           <div className="flex gap-6">
             {/* <Link href="#">Home</Link> */}
             <Link href="#">About us</Link>
-            <Link href="/all-products">Shop</Link>
+            <Link href={routes.products.all}>Shop</Link>
           </div>
         </div>
 

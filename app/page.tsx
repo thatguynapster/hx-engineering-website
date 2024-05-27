@@ -1,5 +1,8 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+
 import {
   Button,
   CartCheckout,
@@ -8,14 +11,10 @@ import {
   ProductCard,
   Skeleton,
 } from "@/components";
-import { buyNow } from "@/functions";
 import { useCategories, useFeaturedProducts, useStore } from "@/hooks";
-import { classNames } from "@/libs";
+import { classNames, sectionPadding } from "@/libs";
+import { buyNow } from "@/functions";
 import { IProduct } from "@/types";
-import Image from "next/image";
-import Link from "next/link";
-
-const sectionPadding = "px-4 sm:px-6 md:px-12";
 
 export default function Home() {
   const { store, setStore } = useStore();
@@ -71,7 +70,7 @@ export default function Home() {
                     <Button
                       className="btn btn-lg btn-primary rounded-full font-semibold"
                       onClick={() => {
-                        buyNow(mainFeature, store, setStore);
+                        buyNow({ product: mainFeature, store, setStore });
                         setTimeout(proceed);
                       }}
                     >
