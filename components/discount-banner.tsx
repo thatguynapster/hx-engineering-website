@@ -1,7 +1,10 @@
 import { classNames } from "@/libs";
+import { routes } from "@/routes";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
-import { Button } from ".";
+
+// import { Button } from ".";
 
 export const DiscountBanner = () => {
   return (
@@ -29,9 +32,12 @@ export const DiscountBanner = () => {
           </h1>
           <p className="text-lg font-medium text-white">12 inch hd display</p>
         </div>
-        <Button className="btn btn-lg bg-primary text-white rounded-full flex items-center justify-center w-max">
+        <Link
+          href={routes.products.all}
+          className="btn btn-lg bg-primary text-white rounded-full flex items-center justify-center w-max"
+        >
           <p className="text-sm font-medium">Shop now</p>
-        </Button>
+        </Link>
       </div>
     </div>
   );

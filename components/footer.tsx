@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import {
@@ -9,33 +11,25 @@ import {
 } from "./icons";
 import { business } from "@/configs";
 import Link from "next/link";
+import { useCategories } from "@/hooks";
+import { ICategory } from "@/types";
+import { routes } from "@/routes";
 
 export const Footer = () => {
+  const {
+    data: categories,
+    isLoading: categoriesLoading,
+    error: categoriesError,
+  } = useCategories({ limit: 5 });
+
   const sectionLinks = [
     {
       title: "Find product",
-      links: [
-        {
-          text: "Brownze arnold",
-          href: "#",
-        },
-        {
-          text: "Chronograph blue",
-          href: "#",
-        },
-        {
-          text: "Smart phones",
-          href: "#",
-        },
-        {
-          text: "automatic watches",
-          href: "#",
-        },
-        {
-          text: "hair straighteners",
-          href: "#",
-        },
-      ],
+      links:
+        categories?.docs.map((category: ICategory) => ({
+          text: category.name,
+          href: routes.products.all,
+        })) ?? [],
     },
     {
       title: "Get help",
@@ -65,10 +59,10 @@ export const Footer = () => {
     {
       title: "About us",
       links: [
-        {
-          text: "news",
-          href: "#",
-        },
+        // {
+        //   text: "news",
+        //   href: "#",
+        // },
         {
           text: "service",
           href: "#",
@@ -115,7 +109,7 @@ export const Footer = () => {
 
           <hr className="border-neutral-30" />
 
-          <div className="flex gap-8 justify-center">
+          <div className="flex gap-8">
             <Link href="#">
               <InstagramIcon className="w-6 h-6" />
             </Link>
@@ -127,6 +121,19 @@ export const Footer = () => {
             </Link>
           </div>
         </div>
+
+        {/* <div className="flex flex-col gap-3.5">
+          <h1 className="text-primary font-semibold text-xl">Find products</h1>
+
+          {categories?.docs.map((category, ind) => (
+            <Link href={link.href} key={ind}>
+              <div className="flex gap-3 items-center">
+                <BulletIcon className="w-2.5 h-2.5 text-primary" />
+                <p className="capitalize">{link.text}</p>
+              </div>
+            </Link>
+          ))}
+        </div> */}
 
         {sectionLinks.map((section, i) => (
           <div className="flex flex-col gap-3.5" key={i}>

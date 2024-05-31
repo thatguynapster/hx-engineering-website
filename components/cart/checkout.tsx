@@ -11,11 +11,14 @@ import { classNames } from "@/libs";
 import { useStore } from "@/hooks";
 
 export const Checkout = ({
+  setOpen,
   setSection,
 }: {
+  setOpen: (open: boolean) => void;
   setSection: (section: CartCheckoutSection["section"]) => void;
 }) => {
   const { store, setStore } = useStore();
+  const cart = store.cart ?? [];
 
   return (
     <>
@@ -25,12 +28,10 @@ export const Checkout = ({
         ) : null}
 
         {!store.instant_buy &&
-          store.cart?.map((item, i) => (
-            <CartItem checkout {...{ item }} key={i} />
-          ))}
+          cart?.map((item, i) => <CartItem checkout {...{ item }} key={i} />)}
       </div>
 
-      {store.instant_buy && store.cart.length ? (
+      {store.instant_buy && cart?.length ? (
         <div className="flex flex-col gap-4 justify-between">
           <div
             className={classNames(
@@ -58,7 +59,7 @@ export const Checkout = ({
               Buy just this item
             </Button>
 
-            {store.cart.length ? (
+            {cart.length ? (
               <Button
                 className="btn-primary w-full"
                 onClick={() => {
@@ -75,14 +76,26 @@ export const Checkout = ({
       <div className="flex flex-col gap-4 sticky bottom-0 bg-white dark:bg-neutral-gray">
         <CartTotal />
 
-        <Button
-          className="btn-lg btn-primary w-full"
-          onClick={() => {
-            setSection("delivery");
-          }}
-        >
-          Proceed to delivery
-        </Button>
+        {!(store.instant_buy && cart) ? (
+          <Button
+            className="btn-lg btn-outline-primary w-full"
+            onClick={() => {
+              setSection("cart");
+              setOpen(false);
+            }}
+          >
+            Continue shopping
+          </Button>
+        ) : (
+          <Button
+            className="btn-lg btn-primary w-full"
+            onClick={() => {
+              setSection("delivery");
+            }}
+          >
+            Proceed to delivery
+          </Button>
+        )}
       </div>
     </>
   );

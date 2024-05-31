@@ -35,10 +35,6 @@ export default function Page() {
     error: categoriesError,
   } = useCategories({ product_count: true });
 
-  useEffect(() => {
-    console.log(filters);
-  }, [filters]);
-
   return (
     <>
       <div
@@ -48,7 +44,7 @@ export default function Page() {
         )}
       >
         <div className="md:max-w-56 w-full">
-          {productsLoading && (
+          {categoriesLoading && (
             <div className="flex flex-col gap-4 w-full animate-pulse">
               <div className="flex justify-between gap-4">
                 <div className="w-2/3 h-6 bg-neutral-20 rounded-xl"></div>

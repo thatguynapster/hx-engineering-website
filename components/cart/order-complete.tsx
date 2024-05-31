@@ -48,7 +48,9 @@ export const OrderComplete = ({
           type="button"
           onClick={() => {
             setSection("cart");
-            setOpen(false);
+            setTimeout(() => {
+              setOpen(false);
+            });
           }}
         >
           Close

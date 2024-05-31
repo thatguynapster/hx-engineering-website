@@ -60,7 +60,7 @@ export default function Home() {
         {mainFeature && (
           <>
             <div className="flex flex-col gap-12">
-              <h1 className="text-5xl font-bold text-primary line line-clamp-2 capitalize">
+              <h1 className="text-5xl font-bold text-primary line-clamp-2 leading-snug capitalize">
                 {mainFeature.name}
               </h1>
 

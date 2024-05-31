@@ -19,6 +19,7 @@ export const DeliveryDetails = ({
   setSection: (section: CartCheckoutSection["section"]) => void;
 }) => {
   const { store, setStore } = useStore();
+  const cart = store.cart ?? [];
 
   return (
     <Formik
@@ -39,7 +40,7 @@ export const DeliveryDetails = ({
         location: { location: "", lat: 0, lng: 0 },
       }}
       onSubmit={(values, { setSubmitting }) => {
-        const cartData = store.cart;
+        const cartData = cart.length ? cart : [store.instant_buy];
         let sale: Partial<ISales> = {};
         let products = [];
 

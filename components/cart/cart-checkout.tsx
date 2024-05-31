@@ -19,6 +19,7 @@ export const CartCheckout = ({
   view?: CartCheckoutSection["section"];
   children: (props: { proceed: () => void }) => ReactNode;
 }) => {
+  const { setStore } = useStore();
   const [open, setOpen] = useState(false);
   const [section, setSection] = useState<CartCheckoutSection["section"]>(view);
 
@@ -35,6 +36,9 @@ export const CartCheckout = ({
           } else {
             setSection("cart");
           }
+          setStore((prev) => {
+            return { ...prev, instant_buy: null };
+          });
           setOpen(false);
         }}
       >
