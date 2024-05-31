@@ -76,7 +76,7 @@ export const Checkout = ({
       <div className="flex flex-col gap-4 sticky bottom-0 bg-white dark:bg-neutral-gray">
         <CartTotal />
 
-        {!(store.instant_buy && cart) ? (
+        {!(store.instant_buy || cart.length) ? (
           <Button
             className="btn-lg btn-outline-primary w-full"
             onClick={() => {
