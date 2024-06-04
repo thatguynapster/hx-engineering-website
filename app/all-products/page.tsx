@@ -10,10 +10,14 @@ import {
 } from "@/components";
 import { useCategories, useProducts, useStore } from "@/hooks";
 import { Filters, ICategory, IProduct } from "@/types";
-// import { sectionPadding } from "@/app/page";
 import { classNames, sectionPadding } from "@/libs";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
+  const searchParams = useSearchParams();
+  const categoriesQuery = searchParams.getAll("categories");
+  console.log(categoriesQuery);
+
   const [filters, setFilters] = useState<Partial<Filters>>({ page: 1 });
   const { store, setStore } = useStore();
 
@@ -51,15 +55,9 @@ export default function Page() {
                 <div className="w-1/3 h-6 bg-neutral-20 rounded-xl"></div>
               </div>
               {Array.from({ length: 4 }, (_, j) => (
-                <div className="flex gap-4 w-full">
-                  <div
-                    key={j}
-                    className="w-12 h-10 bg-neutral-20 rounded-xl"
-                  ></div>
-                  <div
-                    key={j}
-                    className="w-full h-10 bg-neutral-20 rounded-xl"
-                  ></div>
+                <div className="flex gap-4 w-full" key={j}>
+                  <div className="w-12 h-10 bg-neutral-20 rounded-xl"></div>
+                  <div className="w-full h-10 bg-neutral-20 rounded-xl"></div>
                 </div>
               ))}
             </div>

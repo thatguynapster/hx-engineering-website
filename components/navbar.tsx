@@ -60,9 +60,10 @@ export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
 
           <div className="flex gap-6">
             {navigation.map((item, i) => (
-              <Link href={item.href}>{item.name}</Link>
+              <Link key={i} href={item.href}>
+                {item.name}
+              </Link>
             ))}
-            {/* <Link href={routes.products.all}>Shop</Link> */}
           </div>
         </div>
 
