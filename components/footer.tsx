@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-import { BulletIcon, WhatsappIcon } from "./icons";
+import { BulletIcon, InstagramIcon, WhatsappIcon } from "./icons";
 import { business, navigation } from "@/configs";
 import { classNames } from "@/libs";
 
@@ -85,6 +85,9 @@ export const Footer = () => {
           <hr className="border-neutral-30" />
 
           <div className="flex gap-8">
+            <Link href={business.socials.instagram} target="_blank">
+              <InstagramIcon className="w-6 h-6" />
+            </Link>
             <Link href={business.socials.whatsapp} target="_blank">
               <WhatsappIcon className="w-6 h-6" />
             </Link>
