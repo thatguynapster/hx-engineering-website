@@ -23,7 +23,7 @@ export const Footer = () => {
           href: "#",
         },
         {
-          text: "privacy policy",
+          text: "warranty",
           href: "#",
         },
         {
@@ -35,18 +35,18 @@ export const Footer = () => {
     {
       title: "Support",
       links: [
-        {
-          text: "service",
-          href: "#",
-        },
-        {
-          text: "our policy",
-          href: "#",
-        },
-        {
-          text: "customer care",
-          href: "#",
-        },
+        // {
+        //   text: "service",
+        //   href: "#",
+        // },
+        // {
+        //   text: "our policy",
+        //   href: "#",
+        // },
+        // {
+        //   text: "customer care",
+        //   href: "#",
+        // },
         {
           text: "FAQs",
           href: "#",
@@ -60,31 +60,30 @@ export const Footer = () => {
       className={classNames(
         "bg-primary/10 dark:bg-neutral-gray",
         "flex flex-col",
-        "gap-10 p-12",
-        "justify-around"
+        "gap-10 p-12"
       )}
     >
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-6 justify-between">
-        <div className="flex flex-col gap-6">
-          <Link href="/" className="relative h-[48px] w-[232px]">
-            <Image src="/img/logo-long.png" fill priority alt="HX Logo" />
-          </Link>
-
-          <div className="flex gap-4">
-            <MapPinIcon className="w-6" />
-            <Link
-              href={"https://maps.app.goo.gl/XH1k6hQjQm66BLCs6"}
-              target="_blank"
-            >
-              Manono Street,
-              <br />
-              Capital Hills, Accra
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="flex flex-col divide-y divide-neutral-30 w-max">
+          <div className="flex flex-col">
+            <Link href="/" className="relative h-[48px] w-[232px]">
+              <Image src="/img/logo-long.png" fill priority alt="HX Logo" />
             </Link>
+
+            <div className="flex gap-4 py-6">
+              <MapPinIcon className="w-6" />
+              <Link
+                href={"https://maps.app.goo.gl/XH1k6hQjQm66BLCs6"}
+                target="_blank"
+              >
+                Manono Street,
+                <br />
+                Capital Hills, Accra
+              </Link>
+            </div>
           </div>
 
-          <hr className="border-neutral-30" />
-
-          <div className="flex gap-8">
+          <div className="flex gap-8 py-6">
             <Link href={business.socials.instagram} target="_blank">
               <InstagramIcon className="w-6 h-6" />
             </Link>
@@ -101,7 +100,7 @@ export const Footer = () => {
             </h1>
 
             {section.links.map((link, ind) => (
-              <Link href={link.href} key={ind}>
+              <Link href={link.href} key={ind} className="w-max">
                 <div className="flex gap-3 items-center">
                   <BulletIcon className="w-2.5 h-2.5 text-primary" />
                   <p className="capitalize">{link.text}</p>
