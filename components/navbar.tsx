@@ -51,10 +51,7 @@ export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
         </button>
 
         <div className="hidden lg:flex items-center gap-6">
-          <Link
-            href={routes.home.index}
-            className="relative h-[48px] w-[232px]"
-          >
+          <Link href={routes.home} className="relative h-[48px] w-[232px]">
             <Image src="/img/logo-long.png" fill priority alt="HX Logo" />
           </Link>
 

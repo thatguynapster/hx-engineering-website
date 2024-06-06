@@ -61,10 +61,7 @@ export const Sidebar = ({
 const Side = ({ handleActive }: { handleActive: (key: string) => boolean }) => {
   return (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white dark:bg-neutral-gray px-6 pb-4">
-      <Link
-        href={routes.home.index}
-        className="flex h-16 shrink-0 items-center"
-      >
+      <Link href={routes.home} className="flex h-16 shrink-0 items-center">
         <Image
           src={"/img/logo-long.png"}
           alt={"HX logo"}

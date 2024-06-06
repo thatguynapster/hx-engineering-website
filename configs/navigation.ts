@@ -1,14 +1,9 @@
 import { routes } from "@/routes";
 
 export const navigation = [
-  //   {
-  //     name: "Home",
-  //     href: routes.home.index,
-  //     current: true,
-  //   },
   {
     name: "About us",
-    href: routes.about.index,
+    href: routes.about,
     current: false,
   },
   {

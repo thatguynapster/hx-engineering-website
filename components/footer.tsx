@@ -6,8 +6,9 @@ import Link from "next/link";
 import React from "react";
 
 import { BulletIcon, InstagramIcon, WhatsappIcon } from "./icons";
-import { business, navigation } from "@/configs";
+import { business } from "@/configs";
 import { classNames } from "@/libs";
+import { routes } from "@/routes";
 
 export const Footer = () => {
   const sectionLinks = [
@@ -16,40 +17,28 @@ export const Footer = () => {
       links: [
         {
           text: "about us",
-          href: "#",
+          href: routes.about,
         },
         {
           text: "return policy",
-          href: "#",
+          href: routes.return_policy,
         },
         {
           text: "warranty",
-          href: "#",
+          href: routes.warranty,
         },
         {
           text: "payment policy",
-          href: "#",
+          href: routes.payment_policy,
         },
       ],
     },
     {
       title: "Support",
       links: [
-        // {
-        //   text: "service",
-        //   href: "#",
-        // },
-        // {
-        //   text: "our policy",
-        //   href: "#",
-        // },
-        // {
-        //   text: "customer care",
-        //   href: "#",
-        // },
         {
           text: "FAQs",
-          href: "#",
+          href: routes.faqs,
         },
       ],
     },
