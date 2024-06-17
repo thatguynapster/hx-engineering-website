@@ -96,8 +96,12 @@ export default function Home() {
                 height={356}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
-              <div className="absolute bottom-10 right-0 bg-primary rounded-full p-6 text-center text-white font-semibold">
-                only <br /> &#8373;{mainFeature.sale_price}
+              <div className="absolute bottom-10 right-0">
+                <div className="bg-primary rounded-full w-24 h-24 text-center text-white font-semibold flex items-center justify-center">
+                  <span className="items-center justify-center">
+                    only <br /> &#8373;{mainFeature.sale_price}
+                  </span>
+                </div>
               </div>
             </div>
           </>
