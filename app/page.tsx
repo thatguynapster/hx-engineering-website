@@ -12,7 +12,7 @@ import {
   Skeleton,
 } from "@/components";
 import { useCategories, useFeaturedProducts, useStore } from "@/hooks";
-import { classNames, sectionPadding } from "@/libs";
+import { classNames } from "@/libs";
 import { buyNow } from "@/functions";
 import { IProduct } from "@/types";
 
@@ -40,7 +40,6 @@ export default function Home() {
       <div
         className={classNames(
           "flex flex-col lg:flex-row gap-8 items-center justify-between",
-          sectionPadding,
           "lg:px-44"
         )}
       >
@@ -108,7 +107,7 @@ export default function Home() {
         )}
       </div>
 
-      <div className={classNames(sectionPadding, "lg:px-[90px]")}>
+      <div className={classNames("lg:px-[90px]")}>
         <CategorySlider
           categories={categories?.docs}
           loading={categoriesLoading}
@@ -116,7 +115,7 @@ export default function Home() {
         />
       </div>
 
-      <div className={sectionPadding}>
+      <div>
         <h2 className="flex justify-between text-3xl font-semibold text-primary">
           Featured products
         </h2>
@@ -124,7 +123,6 @@ export default function Home() {
 
       <div
         className={classNames(
-          sectionPadding,
           "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4"
         )}
       >
@@ -139,9 +137,7 @@ export default function Home() {
         ))}
       </div>
 
-      <div className={sectionPadding}>
-        <DiscountBanner />
-      </div>
+      <DiscountBanner />
     </>
   );
 }
