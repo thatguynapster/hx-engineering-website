@@ -10,7 +10,7 @@ import {
 } from "@/components";
 import { useCategories, useProducts, useStore } from "@/hooks";
 import { Filters, ICategory, IProduct } from "@/types";
-import { classNames, sectionPadding } from "@/libs";
+import { classNames } from "@/libs";
 import { useSearchParams } from "next/navigation";
 
 export default function Page() {
@@ -41,12 +41,7 @@ export default function Page() {
 
   return (
     <>
-      <div
-        className={classNames(
-          sectionPadding,
-          "flex flex-col md:flex-row gap-4"
-        )}
-      >
+      <div className={classNames("flex flex-col md:flex-row gap-4")}>
         <div className="md:max-w-56 w-full">
           {categoriesLoading && (
             <div className="flex flex-col gap-4 w-full animate-pulse">
@@ -111,9 +106,8 @@ export default function Page() {
           {products && <Pagination {...{ filters, pages, setFilters }} />}
         </div>
       </div>
-      <div className={sectionPadding}>
-        <DiscountBanner />
-      </div>
+
+      <DiscountBanner />
     </>
   );
 }

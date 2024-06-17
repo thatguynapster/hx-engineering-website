@@ -46,5 +46,3 @@ export const randomString = (length: number, chars: string): string => {
   ).join("");
   return result;
 };
-
-export const sectionPadding = "px-4 sm:px-6 md:px-12";
