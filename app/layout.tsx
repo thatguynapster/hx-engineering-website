@@ -29,7 +29,9 @@ export default function RootLayout({
           <AppProvider>
             <main className="flex flex-col gap-16 min-h-screen">
               <PageNavigation />
-              <div className="px-4 sm:px-6 md:px-12">{children}</div>
+              <div className="flex flex-col gap-16 px-4 sm:px-6 md:px-12">
+                {children}
+              </div>
               <Footer />
             </main>
           </AppProvider>
