@@ -2,10 +2,11 @@
 
 import { ShoppingBagIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import React from "react";
 
-import { Button, CartCheckout, ImageSlider } from ".";
 import { addToCart, buyNow } from "@/functions";
+import { Button, CartCheckout } from ".";
 import { classNames } from "@/libs";
 import { IProduct } from "@/types";
 import { useStore } from "@/hooks";
@@ -18,11 +19,13 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
   return (
     <div
       className={classNames(
+        "relative",
         "border border-neutral-30 dark:border-white",
         "group cursor-pointer",
         "flex flex-col gap-2",
-        "py-5 px-3.5 w-full h-fit",
-        "rounded-3xl"
+        "w-full h-fit",
+        "rounded-3xl",
+        "h-[219px]"
       )}
       onClick={() => {
         router.push(
@@ -30,8 +33,16 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
         );
       }}
     >
-      <div className="w-full h-[107px] relative">
-        <ImageSlider images={product.images} alt={product.name} />
+      <div className="w-full h-full relative">
+        <div className="relative w-full h-full -z-10">
+          <Image
+            src={product.images[0]}
+            alt={`${product.name} Image`}
+            fill
+            priority
+            className="object-cover rounded-3xl"
+          />
+        </div>
 
         {/* wishlist icon */}
         {/* <div
@@ -49,46 +60,57 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
         </div> */}
       </div>
 
-      <div className="flex flex-col gap-2 group-hover:hidden transition">
-        <h2 className="font-medium text-primary capitalize truncate">
-          {product.name}
-        </h2>
-        <p className="font-semibold">&#8373;{product.sale_price.toFixed(2)}</p>
-      </div>
-
       <div
         className={classNames(
-          "hidden group-hover:flex",
-          "justify-between gap-4"
+          "flex flex-col gap-2",
+          "absolute bottom-0 left-0 right-0",
+          "bg-[#303030]/50 rounded-b-3xl",
+          "p-4"
         )}
       >
-        <Button
-          className="bg-primary text-white rounded-full flex items-center justify-between w-full"
-          onClick={(ev) => {
-            ev.stopPropagation();
-            addToCart({ product, store, setStore });
-          }}
-        >
-          <p className="text-sm font-semibold">Add to cart</p>
-          <div className="flex items-center justify-center w-8 h-8 bg-white rounded-full">
-            <ShoppingCartIcon className={"w-5 h-5 stroke-2 text-primary"} />
-          </div>
-        </Button>
+        <div className="flex flex-col gap-2 group-hover:hidden transition">
+          <h2 className="text-xl lg:text-lg font-medium text-white capitalize truncate">
+            {product.name}
+          </h2>
+          <p className="font-semibold text-primary">
+            &#8373;{product.sale_price.toFixed(2)}
+          </p>
+        </div>
 
-        <CartCheckout view="checkout">
-          {({ proceed }) => (
-            <Button
-              className="w-[56px] h-[56px] bg-primary text-white rounded-full flex items-center justify-center"
-              onClick={(ev) => {
-                ev.stopPropagation();
-                buyNow({ product, store, setStore });
-                setTimeout(proceed);
-              }}
-            >
-              <ShoppingBagIcon className="w-6 h-6 stroke-2" />
-            </Button>
+        <div
+          className={classNames(
+            "hidden group-hover:flex",
+            "justify-between gap-4"
           )}
-        </CartCheckout>
+        >
+          <Button
+            className="bg-primary text-white rounded-full flex items-center justify-between w-full"
+            onClick={(ev) => {
+              ev.stopPropagation();
+              addToCart({ product, store, setStore });
+            }}
+          >
+            <p className="text-sm font-semibold">Add to cart</p>
+            <div className="flex items-center justify-center w-8 h-8 bg-white rounded-full">
+              <ShoppingCartIcon className={"w-5 h-5 stroke-2 text-primary"} />
+            </div>
+          </Button>
+
+          <CartCheckout view="checkout">
+            {({ proceed }) => (
+              <Button
+                className="w-[56px] h-[56px] bg-primary text-white rounded-full flex items-center justify-center"
+                onClick={(ev) => {
+                  ev.stopPropagation();
+                  buyNow({ product, store, setStore });
+                  setTimeout(proceed);
+                }}
+              >
+                <ShoppingBagIcon className="w-6 h-6 stroke-2" />
+              </Button>
+            )}
+          </CartCheckout>
+        </div>
       </div>
     </div>
   );
