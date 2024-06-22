@@ -97,14 +97,15 @@ export const ImageSlider = ({
       >
         {images.map((data: any, index: number) => (
           <SwiperSlide key={index} className="-z-10 relative w-full h-full">
-            <div className="relative w-full h-[107px]"></div>
-            <Image
-              src={data}
-              alt={`${alt} Image`}
-              fill
-              priority
-              className="object-contain"
-            />
+            <div className="relative w-full h-[107px]">
+              <Image
+                src={data}
+                alt={`${alt} Image`}
+                fill
+                priority
+                className="object-contain"
+              />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

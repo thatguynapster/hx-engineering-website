@@ -94,6 +94,7 @@ export default function Home() {
                 width={331}
                 height={356}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="rounded-3xl"
               />
               <div className="absolute bottom-10 right-0">
                 <div className="bg-primary rounded-full w-24 h-24 text-center text-white font-semibold flex items-center justify-center">
