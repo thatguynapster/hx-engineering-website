@@ -4,22 +4,14 @@ import { InputHTMLAttributes } from "react";
 import { camelCase } from "lodash";
 
 import { Input } from ".";
-import { Places } from "../Map";
-
-type ValueProps = {
-  lat: unknown;
-  lng: unknown;
-  location: string;
-  address?: string;
-  country_code?: string;
-};
+import { ILocation, Places } from "../Map";
 
 export interface PlaceProps
   extends Partial<Omit<InputHTMLAttributes<HTMLInputElement>, "value">> {
   setFieldValue?: any;
   setFieldTouched?: any;
   name: string;
-  value: ValueProps;
+  value: ILocation;
   country?: string[];
 }
 
@@ -45,7 +37,7 @@ export function Place({
       <Input
         withFormik={false}
         placeholder={placeholder}
-        defaultValue={value?.location || value?.address || ""}
+        defaultValue={value?.address || ""}
         {...props}
       />
     </Places>

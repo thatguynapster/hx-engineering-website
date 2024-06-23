@@ -1,3 +1,4 @@
+import { ILocation } from "@/components/Map";
 import { IDiscount, IProduct } from ".";
 
 export type ISales = {
@@ -19,5 +20,6 @@ export type ISales = {
     phone: string;
     email?: string;
   };
+  location: ILocation;
   status: "PENDING" | "READY_FOR_DELIVERY" | "COMPLETED";
 };
