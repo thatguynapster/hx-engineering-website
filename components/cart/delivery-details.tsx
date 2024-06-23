@@ -30,14 +30,14 @@ export const DeliveryDetails = ({
         email: schema.requireEmail("Email"),
         phone_number: schema.requirePhoneNumber("Phone Number"),
         location: object().shape({
-          location: schema.requireString("Location"),
+          address: schema.requireString("Location"),
         }),
       })}
       initialValues={{
         name: "",
         email: "",
         phone_number: "",
-        location: { location: "", lat: 0, lng: 0 },
+        location: { address: "", latitude: 0, longitude: 0 },
       }}
       onSubmit={(values, { setSubmitting }) => {
         const cartData = cart.length ? cart : [store.instant_buy];
@@ -62,6 +62,7 @@ export const DeliveryDetails = ({
           email: values.email,
           phone: values.phone_number,
         };
+        sale.location = values.location;
         console.log(sale);
 
         purchaseProductService(sale)

@@ -10,7 +10,6 @@ export interface PlacesProps {
     props: {
       latitude: number;
       longitude: number;
-      location: string;
       country_code: string;
     } & ILocation
   ) => void;
@@ -60,7 +59,7 @@ export function Places({
         }
 
         return {
-          address: place.formatted_address,
+          address: place.name,
           country: country?.long_name as string,
           country_code: country?.short_name as string,
           city: city?.long_name as string,
@@ -70,10 +69,7 @@ export function Places({
         };
       })();
 
-      onChange({
-        ...locationData,
-        location: place.name,
-      });
+      onChange(locationData);
     }
   };
 
