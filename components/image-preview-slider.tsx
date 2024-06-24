@@ -30,53 +30,58 @@ export const ImagePreviewSlider = ({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="w-full h-max md:h-[400px] lg:h-[561px]">
-        <Swiper
-          className="w-full h-full"
-          spaceBetween={16}
-          navigation
-          thumbs={{ swiper }}
-          modules={[FreeMode, Thumbs]}
-        >
-          {images.map((data: any, index: number) => (
-            <SwiperSlide key={index}>
+      <Swiper
+        className="w-full h-max"
+        spaceBetween={16}
+        navigation
+        thumbs={{ swiper }}
+        modules={[FreeMode, Thumbs]}
+      >
+        {images.map((data: any, index: number) => (
+          <SwiperSlide key={index}>
+            <div className="relative w-full aspect-square">
+              {/* <Image
+                src={data}
+                alt={`${alt} Image`}
+                fill
+                priority
+                className="w-full h-full object-contain border border-neutral-30 rounded-2xl"
+              /> */}
               <Image
                 src={data}
                 alt={`${alt} Image`}
-                width={647}
-                height={561}
+                fill
                 priority
-                className="w-full h-full object-contain border border-neutral-30 rounded-2xl"
+                className="object-cover border border-neutral-30 rounded-2xl"
               />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
-      <div className="w-full h-max md:h-[110px] lg:h-[157px]">
-        <Swiper
-          className="w-full h-full"
-          onSwiper={setSwiper}
-          spaceBetween={10}
-          slidesPerView={2.8}
-          freeMode={true}
-          watchSlidesProgress={true}
-          modules={[FreeMode, Thumbs]}
-        >
-          {images.map((data: any, index: number) => (
-            <SwiperSlide key={index}>
+      <Swiper
+        className="w-full h-max"
+        onSwiper={setSwiper}
+        spaceBetween={10}
+        slidesPerView={4.4}
+        freeMode={true}
+        watchSlidesProgress={true}
+        modules={[FreeMode, Thumbs]}
+      >
+        {images.map((data: any, index: number) => (
+          <SwiperSlide key={index}>
+            <div className="relative w-full aspect-square">
               <Image
                 src={data}
                 alt={`${alt} Image`}
-                width={215}
-                height={157}
+                fill
                 priority
-                className="w-full h-full object-contain border border-neutral-30 rounded-2xl"
+                className="object-contain border border-neutral-30 rounded-2xl"
               />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };

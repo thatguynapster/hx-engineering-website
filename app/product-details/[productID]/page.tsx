@@ -74,6 +74,7 @@ export default function Page({ params }: { params: { productID: string } }) {
         {product && (
           <>
             <ImagePreviewSlider images={product.images} alt={product.name} />
+
             <div className="w-full flex flex-col divide-y divide-neutral-30">
               <div className="flex flex-col gap-4 p-4">
                 <h1 className="text-3xl font-medium capitalize">
