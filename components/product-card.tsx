@@ -23,9 +23,8 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
         "border border-neutral-30 dark:border-white",
         "group cursor-pointer",
         "flex flex-col gap-2",
-        "w-full h-fit aspect-square",
-        "rounded-3xl",
-        "md:h-[219px]"
+        "w-full aspect-square",
+        "rounded-2xl"
       )}
       onClick={() => {
         router.push(
@@ -40,7 +39,7 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
             alt={`${product.name} Image`}
             fill
             priority
-            className="object-cover rounded-3xl"
+            className="object-cover rounded-2xl"
           />
         </div>
 
