@@ -1,5 +1,5 @@
 export const business = {
-  phone: "(+233) 056 075 8455",
+  phone: "(+233) 059 744 7768",
   socials: {
     facebook: "#",
     instagram:

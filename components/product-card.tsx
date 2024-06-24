@@ -23,9 +23,9 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
         "border border-neutral-30 dark:border-white",
         "group cursor-pointer",
         "flex flex-col gap-2",
-        "w-full h-fit",
+        "w-full h-fit aspect-square",
         "rounded-3xl",
-        "h-[219px]"
+        "md:h-[219px]"
       )}
       onClick={() => {
         router.push(

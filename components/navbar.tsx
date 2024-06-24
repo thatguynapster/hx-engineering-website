@@ -33,11 +33,18 @@ export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
     >
       {/* top bar */}
       <div className="flex justify-between py-2">
-        <p className="text-sm">Need help? Call {business.phone}</p>
-        <div className="flex gap-5">
+        <p className="text-sm">
+          Need help? Call{" "}
+          <Link href={`tel:${business.phone}`}>{business.phone}</Link>
+        </p>
+        <Link
+          href={"https://maps.app.goo.gl/XH1k6hQjQm66BLCs6"}
+          target="_blank"
+          className="flex gap-2"
+        >
           <MapPinIcon className="w-5 h-5" />
-          Our Store
-        </div>
+          <p>Our Store</p>
+        </Link>
       </div>
 
       {/* main nav */}
