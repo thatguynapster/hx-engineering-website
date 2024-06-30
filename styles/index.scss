@@ -42,3 +42,7 @@ body {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
+
+.parseContent img {
+  @apply mb-2 rounded-lg;
+}
