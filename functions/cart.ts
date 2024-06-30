@@ -75,7 +75,6 @@ export const mergeInstantBuyWithCart = (
   store: Partial<StoreInterface>,
   setStore: Dispatch<SetStateAction<Partial<StoreInterface>>>
 ) => {
-  console.log(item);
   const cart = store.cart;
   let cartItems: ICart[] = [];
   if (cart) {
@@ -88,14 +87,12 @@ export const mergeInstantBuyWithCart = (
 
   // update cart based when product already exists
   if (existingItemIndex !== -1) {
-    console.log("exists");
     cartItems[existingItemIndex] = {
       ...cartItems[existingItemIndex],
       quantity: cartItems[existingItemIndex].quantity + item.quantity,
     };
   } else {
     // product does not exist
-    console.log("does not exist");
     cartItems.push(item);
   }
 
@@ -111,11 +108,9 @@ export const checkoutInstantBuy = (
   setStore: Dispatch<SetStateAction<Partial<StoreInterface>>>
 ) => {
   let s_store = { ...store };
-  console.log(s_store);
   delete s_store.cart;
   s_store.cart = [s_store.instant_buy];
   delete s_store.instant_buy;
-  console.log(s_store);
 
   setStore((prev) => {
     return s_store;

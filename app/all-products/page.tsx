@@ -16,7 +16,6 @@ import { useSearchParams } from "next/navigation";
 export default function Page() {
   const searchParams = useSearchParams();
   const categoriesQuery = searchParams.getAll("categories");
-  console.log(categoriesQuery);
 
   const [filters, setFilters] = useState<Partial<Filters>>({ page: 1 });
   const { store, setStore } = useStore();

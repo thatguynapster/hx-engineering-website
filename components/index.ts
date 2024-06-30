@@ -9,6 +9,7 @@ export * as Field from "./Field";
 export * from "./footer";
 export * as Icons from "./icons";
 export * from "./image-slider";
+export * from "./modal";
 export * from "./navbar";
 export * from "./page-navigation";
 export * from "./pagination";
