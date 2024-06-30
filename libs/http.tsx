@@ -28,7 +28,6 @@ http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     const _store = localStorage.getItem(
       process.env["NEXT_PUBLIC_STORAGE_KEY"]!
     );
-    console.log(window.location.href);
 
     if (_store || store) {
       const st = _store && JSON.parse(_store);
@@ -48,7 +47,6 @@ http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   config.params = {
     ...config.params,
   };
-  console.log(config.url);
 
   return config;
 });

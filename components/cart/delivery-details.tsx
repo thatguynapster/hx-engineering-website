@@ -63,7 +63,6 @@ export const DeliveryDetails = ({
           phone: values.phone_number,
         };
         sale.location = values.location;
-        console.log(sale);
 
         purchaseProductService(sale)
           .then((resp) => {
@@ -81,14 +80,12 @@ export const DeliveryDetails = ({
           .catch((error) => {
             console.log(error);
             if (error.unavailableProducts) {
-              console.log("has unavailable products");
               setStore({
                 ...store,
                 unavailable_products: error.unavailableProducts,
               });
             }
             if (error.missingProducts) {
-              console.log("has missing products");
               setStore({
                 ...store,
                 missing_products: error.missingProducts,

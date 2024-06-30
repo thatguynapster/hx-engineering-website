@@ -39,7 +39,6 @@ export default function Page({ params }: { params: { productID: string } }) {
     isLoading: relatedProductsLoading,
     error: relatedProductsError,
   } = useRelatedProducts(productID);
-  console.log(relatedProducts);
 
   const tabs: LocalTabsProps["tabs"] = [
     {
@@ -163,7 +162,7 @@ export default function Page({ params }: { params: { productID: string } }) {
                     className="w-6 h-6 cursor-pointer"
                     onClick={(ev: any) => {
                       ev.stopPropagation();
-                      console.log(detailsRef.current.innerText);
+
                       let shareData = {
                         title: `${product.name} | HX ENGINEERING`,
                         text: `${product.details} ...`,

@@ -29,7 +29,6 @@ export function Place({
       country={country}
       id={camelCase(name)}
       onChange={(value) => {
-        console.log(value);
         setFieldValue?.(name, value);
         setTimeout(() => setFieldTouched?.(name, true), 500);
       }}

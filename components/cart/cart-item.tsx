@@ -40,11 +40,9 @@ export const CartItem = ({
 
   const productErrorMessage = () => {
     if (store.unavailable_products?.includes(item._id)) {
-      console.log("low stock");
       return "Low stock";
     }
     if (store.missing_products?.includes(item._id)) {
-      console.log("product not available");
       return "Product not available";
     }
     return null;
@@ -78,13 +76,11 @@ export const CartItem = ({
             <CartQuantity
               incrementQuantity={() => {
                 incrementQuantity(items, itemIdx).then((items) => {
-                  console.log(items);
                   setStore({ ...store, cart: items });
                 });
               }}
               decrementQuantity={() => {
                 decrementQuantity(items, item, itemIdx).then((items) => {
-                  console.log(items);
                   items && setStore({ ...store, cart: items });
                 });
               }}
@@ -125,8 +121,6 @@ const incrementQuantity = async (
       ...items[itemIdx],
       quantity: items[itemIdx].quantity + 1,
     };
-    // setStore({ ...store, cart: items });
-    console.log(items);
     return items;
   }
 };
@@ -141,8 +135,6 @@ const decrementQuantity = async (
       ...items[itemIdx],
       quantity: items[itemIdx].quantity - 1,
     };
-    // setStore({ ...store, cart: items });
-    console.log(items);
     return items;
   }
 };

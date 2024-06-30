@@ -23,7 +23,6 @@ export const ImagePreviewSlider = ({
 
   useEffect(() => {
     swiper?.on("slideChange", ({ activeIndex }) => {
-      console.log(activeIndex);
       setActiveIndex(activeIndex);
     });
   }, [swiper, images]);

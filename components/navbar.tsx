@@ -14,10 +14,15 @@ import { classNames } from "@/libs";
 import { useStore } from "@/hooks";
 import { routes } from "@/routes";
 import Link from "next/link";
+import useSWR from "swr";
+import AnnouncementBoard from "./announcement/announcement-board";
 
 export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
   const { store } = useStore();
   const [cartValue, setCartValue] = useState(0);
+
+  const { data: announcement } = useSWR("/public/announcements/latest");
+  console.log(announcement);
 
   useEffect(() => {
     setCartValue(store.cart?.length ?? 0);
@@ -31,6 +36,26 @@ export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
         "glass"
       )}
     >
+      {/* announcement bar */}
+      {announcement && (
+        <AnnouncementBoard>
+          {({ proceed }) => (
+            <div
+              onClick={proceed}
+              className={classNames(
+                "p-2 bg-neutral-20 italic",
+                "-mx-4 sm:-mx-6 md:-mx-12",
+                "cursor-pointer",
+                "truncate"
+              )}
+            >
+              <span className="uppercase">announcement:</span>{" "}
+              {announcement.title}
+            </div>
+          )}
+        </AnnouncementBoard>
+      )}
+
       {/* top bar */}
       <div className="flex justify-between py-2">
         <p className="text-sm">
