@@ -106,7 +106,7 @@ export default function Page() {
         </div>
       </div>
 
-      <DiscountBanner />
+      {/* <DiscountBanner /> */}
     </>
   );
 }
