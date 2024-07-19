@@ -63,7 +63,7 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
         className={classNames(
           "flex flex-col gap-2",
           "absolute bottom-0 left-0 right-0",
-          "bg-[#303030]/50 rounded-b-3xl",
+          "bg-[#303030]/50 rounded-b-2xl",
           "p-4"
         )}
       >

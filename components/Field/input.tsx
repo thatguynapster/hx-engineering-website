@@ -21,11 +21,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         className={classNames(
           className,
           "text-sm h-full w-full px-4 py-3",
-          "!outline-0 !outline-none !border-0 rounded-full",
+          "!outline-0 !outline-none !border-0 rounded-3xl",
           "disabled:bg-neutral-30 disabled:text-neutral-400",
           "placeholder:text-neutral-400",
           "caret-primary",
-          "dark:bg-neutral-gray"
+          "bg-white dark:bg-neutral-gray"
         )}
         {...props}
       />

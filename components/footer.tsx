@@ -9,6 +9,7 @@ import { BulletIcon, InstagramIcon, WhatsappIcon } from "./icons";
 import { business } from "@/configs";
 import { classNames } from "@/libs";
 import { routes } from "@/routes";
+import ContactForm from "./contact-form";
 
 export const Footer = () => {
   const sectionLinks = [
@@ -42,6 +43,23 @@ export const Footer = () => {
         },
       ],
     },
+    {
+      title: "Services",
+      links: [
+        {
+          text: "Website Development",
+          href: "#",
+        },
+        {
+          text: "Mobile App Development",
+          href: "#",
+        },
+        {
+          text: "Digital & Bulk Printing Services",
+          href: "#",
+        },
+      ],
+    },
   ];
 
   return (
@@ -49,10 +67,11 @@ export const Footer = () => {
       className={classNames(
         "bg-primary/10 dark:bg-neutral-gray",
         "flex flex-col",
-        "gap-10 p-12"
+        "gap-10 p-12",
+        "divide-y divide-neutral-30"
       )}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="flex flex-col divide-y divide-neutral-30 w-max">
           <div className="flex flex-col">
             <Link href="/" className="relative h-[48px] w-[232px]">
@@ -98,6 +117,9 @@ export const Footer = () => {
             ))}
           </div>
         ))}
+      </div>
+      <div className=" pt-12 col-span-4">
+        <ContactForm />
       </div>
     </div>
   );

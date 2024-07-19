@@ -43,7 +43,8 @@ export const Navbar = ({ setToggle }: { setToggle: (t: boolean) => void }) => {
             <div
               onClick={proceed}
               className={classNames(
-                "p-2 bg-neutral-20 italic",
+                "bg-neutral-20 dark:bg-info/30",
+                "p-2 italic",
                 "-mx-4 sm:-mx-6 md:-mx-12",
                 "cursor-pointer",
                 "truncate"
