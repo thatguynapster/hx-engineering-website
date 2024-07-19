@@ -110,7 +110,7 @@ export const Footer = () => {
             {section.links.map((link, ind) => (
               <Link href={link.href} key={ind} className="w-max">
                 <div className="flex gap-3 items-center">
-                  <BulletIcon className="w-2.5 h-2.5 text-primary" />
+                  {/* <BulletIcon className="w-2.5 h-2.5 text-primary" /> */}
                   <p className="capitalize">{link.text}</p>
                 </div>
               </Link>

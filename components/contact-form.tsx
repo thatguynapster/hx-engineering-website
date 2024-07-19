@@ -44,15 +44,33 @@ const ContactForm = () => {
           </h1>
 
           <div className="grid grid-cols-2 gap-4">
-            <Field.Group required name="name" label="Name">
+            <Field.Group
+              required
+              name="name"
+              label="Name"
+              className=" col-span-2"
+            >
               <Field.Input name="name" value={values.name} placeholder="Name" />
+            </Field.Group>
+
+            <Field.Group
+              required
+              name="email"
+              label="Email"
+              className="col-span-2"
+            >
+              <Field.Input
+                name="email"
+                value={values.email}
+                placeholder="Email"
+              />
             </Field.Group>
 
             <Field.Group
               name="location"
               label="Location"
               required
-              className="row-span-2"
+              className="col-span-2"
             >
               <Field.Input
                 as="textarea"
@@ -61,14 +79,6 @@ const ContactForm = () => {
                 value={values.message}
                 placeholder="Message"
                 className="h-full"
-              />
-            </Field.Group>
-
-            <Field.Group required name="email" label="Email">
-              <Field.Input
-                name="email"
-                value={values.email}
-                placeholder="Email"
               />
             </Field.Group>
 
