@@ -38,50 +38,52 @@ const ContactForm = () => {
       }}
     >
       {({ values, isValid, isSubmitting, handleSubmit }) => (
-        <Form className="flex flex-col lg:w-1/2 mx-auto gap-3">
-          <div className="flex flex-col lg:flex-row gap-3">
-            <div className="flex flex-col w-full gap-3">
-              <Field.Group required name="name" label="Name">
-                <Field.Input
-                  name="name"
-                  value={values.name}
-                  placeholder="Name"
-                />
-              </Field.Group>
+        <Form className="flex flex-col lg:w-1/2 mx-auto gap-4">
+          <h1 className="capitalize text-3xl font-semibold mb-4">
+            How can we help?
+          </h1>
 
-              <Field.Group required name="email" label="Email">
-                <Field.Input
-                  name="email"
-                  value={values.email}
-                  placeholder="Email"
-                />
-              </Field.Group>
-            </div>
+          <div className="grid grid-cols-2 gap-4">
+            <Field.Group required name="name" label="Name">
+              <Field.Input name="name" value={values.name} placeholder="Name" />
+            </Field.Group>
 
-            <div className="flex flex-col w-full gap-3">
-              <Field.Group name="location" label="Location" required>
-                <Field.Input
-                  as="textarea"
-                  rows={4}
-                  name="message"
-                  value={values.message}
-                  placeholder="Message"
-                />
-              </Field.Group>
-            </div>
+            <Field.Group
+              name="location"
+              label="Location"
+              required
+              className="row-span-2"
+            >
+              <Field.Input
+                as="textarea"
+                rows={4}
+                name="message"
+                value={values.message}
+                placeholder="Message"
+                className="h-full"
+              />
+            </Field.Group>
+
+            <Field.Group required name="email" label="Email">
+              <Field.Input
+                name="email"
+                value={values.email}
+                placeholder="Email"
+              />
+            </Field.Group>
+
+            <Button
+              className="btn-lg btn-primary w-full col-span-2"
+              type="button"
+              disabled={!isValid}
+              onClick={() => {
+                handleSubmit();
+              }}
+              {...{ isSubmitting }}
+            >
+              Complete
+            </Button>
           </div>
-
-          <Button
-            className="btn-lg btn-primary w-full"
-            type="button"
-            disabled={!isValid}
-            onClick={() => {
-              handleSubmit();
-            }}
-            {...{ isSubmitting }}
-          >
-            Complete
-          </Button>
         </Form>
       )}
     </Formik>
