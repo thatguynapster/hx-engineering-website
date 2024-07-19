@@ -54,7 +54,12 @@ export function Group({
           {required && <span className="text-danger-main text-error">*</span>}
         </label>
       )}
-      <div className={classNames("rounded-3xl", "border border-neutral-30")}>
+      <div
+        className={classNames(
+          "bg-white dark:bg-neutral-gray rounded-3xl",
+          "border border-neutral-30"
+        )}
+      >
         {children && (
           <>
             {React.Children.map(

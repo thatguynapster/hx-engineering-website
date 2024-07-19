@@ -1,5 +1,6 @@
 export const business = {
   phone: "(+233) 059 744 7768",
+  email: "hxeng.inc@gmail.com",
   socials: {
     facebook: "#",
     instagram:
