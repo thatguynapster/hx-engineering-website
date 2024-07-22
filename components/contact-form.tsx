@@ -67,8 +67,8 @@ const ContactForm = () => {
             </Field.Group>
 
             <Field.Group
-              name="location"
-              label="Location"
+              name="message"
+              label="Message"
               required
               className="col-span-2"
             >
